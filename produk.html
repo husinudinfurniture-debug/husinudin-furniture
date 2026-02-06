@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Produk Custom | Husinudin Furniture</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Lihat berbagai produk furniture custom Husinudin Furniture. Sofa, bed frame, kasur, meja, dan kursi dibuat sesuai kebutuhan ruang Anda.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://husinudinfurniture-debug.github.io/husinudin-furniture/produk.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Produk Custom | Husinudin Furniture">
+  <meta property="og:description" content="Furniture custom berkualitas, diproduksi langsung sesuai ruang dan kebutuhan Anda.">
+  <meta property="og:url" content="https://husinudinfurniture-debug.github.io/husinudin-furniture/produk.html">
+  <meta property="og:image" content="assets/images/hero.webp">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/produk.css">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="header" role="banner">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">Husinudin Furniture</a>
+
+    <!-- Hamburger (Mobile) -->
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+
+    <nav class="nav" role="navigation" aria-label="Main Navigation">
+      <a href="index.html">Beranda</a>
+      <a href="produk.html" class="active">Produk</a>
+      <a href="custom.html">Custom</a>
+      <a href="tentang.html">Tentang</a>
+    </nav>
+  </div>
+</header>
+<!-- MAIN -->
+<main class="container">
+
+  <h1 class="section-title">Produk Custom Kami</h1>
+
+  <!-- SEARCH -->
+  <input
+    id="searchInput"
+    class="search"
+    type="text"
+    placeholder="Cari produk furniture..."
+    aria-label="Cari produk"
+  >
+
+  <!-- KATEGORI -->
+  <div class="kategori" role="tablist">
+    <button data-kategori="All" class="active">Semua</button>
+    <button data-kategori="Sofa Set Custom">Sofa Set</button>
+    <button data-kategori="Bed Frame Custom">Bed Frame</button>
+    <button data-kategori="Kasur Custom">Kasur</button>
+    <button data-kategori="Bed Set Custom">Bed Set</button>
+    <button data-kategori="Meja & Kursi">Meja & Kursi</button>
+  </div>
+
+  <!-- GRID PRODUK -->
+  <div id="produk-list" class="produk-grid" aria-live="polite"></div>
+
+</main>
+
+<!-- MODAL DETAIL PRODUK -->
+<div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal-content">
+    <button class="close" aria-label="Tutup">&times;</button>
+
+    <img id="modalImg" alt="Detail produk furniture">
+
+    <h3 id="modalNama"></h3>
+    <p id="modalKategori" class="muted"></p>
+    <p id="modalHarga" class="harga-modal"></p>
+    <p id="modalDesc"></p>
+
+    <a
+      id="modalWa"
+      class="btn-wa"
+      target="_blank"
+      rel="noopener"
+    >
+      Konsultasi via WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER (KONSISTEN – DIKUNCI) -->
+<footer class="footer" role="contentinfo">
+  <div class="container footer-inner">
+
+    <div class="footer-brand">
+      <strong>Husinudin Furniture</strong>
+      <p>Furniture custom sesuai ruang & kebutuhan</p>
+    </div>
+
+    <div class="footer-contact">
+      <a href="mailto:husinudinfurniture@gmail.com">Email</a>
+      <a href="https://instagram.com/husinudinfurniture" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://tiktok.com/@husinudinfurniture" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://wa.me/6281234567890" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+
+    <div class="footer-copy">
+      <p>© 2026 Husinudin Furniture</p>
+    </div>
+
+  </div>
+</footer>
+
+<!-- SCRIPT -->
+<script src="js/data.js" defer></script>
+<script src="js/main.js" defer></script>
+
+</body>
+</html>
