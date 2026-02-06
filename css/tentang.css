@@ -1,0 +1,211 @@
+/* =========================================================
+   tentang.css - About Page Styling
+   ========================================================= */
+
+/* ================= HERO ================= */
+.about-hero {
+  background: linear-gradient(
+    180deg,
+    var(--bg-soft),
+    var(--bg-light)
+  );
+  padding: var(--spacing-xl) 0;
+  display: flex;
+  align-items: center;
+  min-height: 50vh;
+}
+
+.about-hero .container {
+  max-width: 760px;
+  text-align: center;
+  padding-left: var(--container-padding-mobile);
+  padding-right: var(--container-padding-mobile);
+}
+
+.about-hero h1 {
+  font-size: clamp(1.9rem, 5vw, 2.8rem);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-lg);
+}
+
+.about-hero p {
+  color: var(--text-soft);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* Tablet: increase padding */
+@media (min-width: var(--breakpoint-lg)) {
+  .about-hero {
+    padding: var(--spacing-2xl) 0;
+  }
+}
+
+/* Desktop: premium spacing */
+@media (min-width: var(--breakpoint-xl)) {
+  .about-hero {
+    padding: var(--spacing-3xl) 0;
+  }
+}
+
+/* ================= STORY ================= */
+.about-grid {
+  display: grid;
+  gap: var(--spacing-xl);
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+
+.about-text h2 {
+  margin-bottom: var(--spacing-lg);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+.about-text p {
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  object-fit: cover;
+}
+
+/* ================= VALUES ================= */
+.values-grid {
+  display: grid;
+  gap: var(--spacing-lg);
+  grid-template-columns: 1fr;
+  margin-top: var(--spacing-lg);
+}
+
+.value-item {
+  background: var(--bg-light);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.value-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.value-item h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.value-item p {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+}
+
+/* ================= PROCESS ================= */
+.process-list {
+  margin-top: var(--spacing-lg);
+  padding: 0;
+  display: grid;
+  gap: 0;
+}
+
+.process-list li {
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+
+  padding: var(--spacing-md) 0;
+  border-bottom: 1px solid var(--border);
+  transition: background-color var(--transition);
+}
+
+.process-list li:last-child {
+  border-bottom: none;
+}
+
+.process-list span {
+  font-weight: 700;
+  color: var(--primary);
+  min-width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.process-list p {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  margin: 0;
+}
+
+/* ================= CTA ================= */
+.cta {
+  text-align: center;
+  padding: var(--spacing-xl) 0;
+}
+
+.cta h2 {
+  margin-bottom: var(--spacing-md);
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+}
+
+.cta p {
+  margin-bottom: var(--spacing-lg);
+  color: var(--text-soft);
+}
+
+/* Tablet: increase padding */
+@media (min-width: var(--breakpoint-lg)) {
+  .cta {
+    padding: var(--spacing-2xl) 0;
+  }
+}
+
+/* Desktop: premium spacing */
+@media (min-width: var(--breakpoint-xl)) {
+  .cta {
+    padding: var(--spacing-3xl) 0;
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (min-width: var(--breakpoint-lg)) {
+  .about-grid {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: var(--spacing-2xl);
+  }
+
+  .values-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xl);
+  }
+}
+
+@media (min-width: var(--breakpoint-xl)) {
+  .about-hero .container {
+    max-width: 900px;
+  }
+}
+
+/* ================= DARK MODE ================= */
+:root[data-theme="dark"] .about-hero {
+  background: linear-gradient(
+    180deg,
+    var(--bg-dark-start),
+    var(--bg-dark-end)
+  );
+}
+
+:root[data-theme="dark"] .value-item {
+  background: var(--bg-light);
+}
+
+:root[data-theme="dark"] .process-list li {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}

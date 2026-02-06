@@ -1,0 +1,250 @@
+/* =========================================================
+   style.css — Minimal global stylesheet (optimized)
+   Purpose: root variables, reset, typography, accessibility, responsive base
+   This file contains only styles used across index, produk, custom, tentang
+   Layout & component specifics live in layout.css, components.css and page files
+   ========================================================= */
+
+/* ================= ROOT VARIABLES (spec-compliant) ================= */
+:root {
+  --primary: #4E342E;
+  --primary-soft: #6B3F2B;
+  --bg-soft: #F5F1E8;
+  --bg-light: #FFFFFF;
+  --text-dark: #333333;
+  --text-soft: #555555;
+  --text-light: #ffffff;
+
+  --border: #e9e9e9;
+  --whatsapp: #25D366;
+  --whatsapp-dark: #1ebe5d;
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+
+  --radius: 10px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 6px 18px rgba(0,0,0,0.08);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,0.08);
+  --shadow-xl: 0 18px 60px rgba(0,0,0,0.12);
+
+  --transition: 0.25s ease;
+
+  /* Breakpoints (project spec) */
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+
+  /* Container paddings referenced by layout.css */
+  --container-padding-mobile: 1rem;
+  --container-padding-tablet: 2rem;
+  --container-padding-desktop: 3rem;
+
+  --section-padding-mobile: 3rem;
+  --section-padding-tablet: 3.5rem;
+  --section-padding-desktop: 4rem;
+
+  --h2-size-mobile: 1.25rem;
+  --h2-size-tablet: 2rem;
+  --h2-size-desktop: 2.25rem;
+
+  /* Grid minimums (used by page CSS for responsive columns) */
+  --grid-min-mobile: 220px;
+  --grid-min-tablet: 160px;
+  --grid-min-desktop: 120px;
+} 
+
+/* Dark mode: respect system */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #6B3F2B;
+    --primary-soft: #4E342E;
+    --bg-soft: #1E1E1E; /* per spec */
+    --bg-light: #2B2A28;
+    --text-dark: #EEEEEE; /* per spec */
+    --text-soft: #D0CFCB;
+  }
+}
+
+/* Explicit toggle override for JS */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --primary: #6B3F2B;
+  --bg-soft: #1E1E1E;
+  --text-dark: #EEEEEE;
+}
+
+
+/* ================= RESET & BASE ================= */
+* , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background: var(--bg-soft);
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden; /* prevent horizontal overscroll */
+  padding-left: var(--container-padding-mobile);
+  padding-right: var(--container-padding-mobile);
+}
+
+/* Simple normalizations */
+ul, ol { list-style: none; }
+img { max-width: 100%; height: auto; display: block; }
+figure { margin: 0; }
+
+/* Links */
+a { color: var(--primary); text-decoration: none; transition: color var(--transition); }
+a:hover, a:focus { color: var(--primary-soft); }
+
+/* Forms & controls */
+input, textarea, select, button { font-family: inherit; font-size: 1rem; }
+button { cursor: pointer; }
+
+/* Accessibility helper */
+.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+/* ================= ACCESSIBILITY & FOCUS ================= */
+:focus { outline: none; }
+:focus-visible { outline: 3px solid rgba(78,52,46,0.12); outline-offset: 3px; box-shadow: 0 0 0 4px rgba(78,52,46,0.06); }
+
+/* Ensure interactive controls meet target size */
+.btn, .btn-primary, .btn-wa, button, a[role="button"] { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; border-radius: var(--radius); }
+
+/* ================= TYPOGRAPHY ================= */
+h1 { font-size: clamp(1.6rem, 4vw, 2.6rem); line-height: 1.12; margin-bottom: var(--spacing-md); }
+h2 { font-size: clamp(1.25rem, 3.2vw, var(--h2-size-tablet)); line-height: 1.18; margin-bottom: var(--spacing-md); }
+h3 { font-size: 1.05rem; line-height: 1.35; margin-bottom: var(--spacing-sm); }
+p { color: var(--text-soft); margin-bottom: var(--spacing-md); }
+small, .caption { font-size: 0.85rem; color: var(--text-soft); }
+
+/* Responsive typography */
+@media (min-width: var(--bp-md)) { html { font-size: 17px; } }
+@media (min-width: var(--bp-lg)) { html { font-size: 18px; } h1 { font-size: 2.25rem; } h2 { font-size: var(--h2-size-desktop); } }
+
+/* ================= TRANSITIONS & MOTION ================= */
+.transition { transition: all var(--transition); }
+@media (prefers-reduced-motion: reduce) { .transition, * { transition: none !important; animation-duration: 0s !important; scroll-behavior: auto; } }
+
+/* ================= SMALL HELPERS ================= */
+.center { text-align: center; }
+.kbd { display: inline-block; padding: 0.12rem 0.4rem; background: rgba(0,0,0,0.04); border-radius: 6px; font-size: 0.9rem; }
+
+/* Layout & page style rules live in `layout.css` and page-specific CSS files. */
+
+
+/* ================= IMAGES ================= */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ================= MID / CONTENT HELPER ================= */
+/* Use `.mid` for centered, mid-width content blocks inside full-width sections */
+.mid {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding-mobile);
+  padding-right: var(--container-padding-mobile);
+  box-sizing: border-box;
+}
+
+@media (min-width: var(--bp-lg)){
+  .mid {
+    max-width: 980px;
+    padding-left: var(--container-padding-tablet);
+    padding-right: var(--container-padding-tablet);
+  }
+}
+
+@media (min-width: var(--bp-xl)){
+  .mid { max-width: 1100px; }
+}
+
+/* Mobile-first: centered site container */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding-mobile);
+  padding-right: var(--container-padding-mobile);
+  box-sizing: border-box;
+}
+
+@media (min-width: var(--bp-lg)){
+  .container { max-width: 1000px; padding-left: var(--container-padding-tablet); padding-right: var(--container-padding-tablet); }
+}
+
+@media (min-width: var(--bp-xl)){
+  .container { max-width: 1200px; padding-left: var(--container-padding-desktop); padding-right: var(--container-padding-desktop); }
+}
+
+/* ================= FORM ELEMENTS ================= */
+input, textarea, select, button {
+  font-family: inherit;
+  font-size: 1rem;
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+
+input:focus, textarea:focus, select:focus, button:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ================= BUTTONS GLOBAL ================= */
+button {
+  cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Container, section spacing, and full-bleed header/hero moved to `layout.css` to keep `style.css` minimal (tokens & basic accessibility only). */
+
+/* ================= TRANSITIONS ================= */
+.transition {
+  transition: all var(--transition);
+}
+
+/* ================= RESPONSIVE TYPOGRAPHY ================= */
+/* Mobile-first base font sizes; increase on larger screens for better reading */
+@media (min-width: 640px) {
+  html { font-size: 17px; }
+}
+
+@media (min-width: 768px) {
+  html { font-size: 18px; }
+
+  h1 { font-size: 2rem; }
+  h2 { font-size: var(--h2-size-tablet); }
+  h3 { font-size: 1.1rem; }
+}
+
+@media (min-width: 1024px) {
+  html { font-size: 18px; }
+
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: var(--h2-size-desktop); }
+  h3 { font-size: 1.15rem; }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .transition, * {
+    transition: none !important;
+    animation-duration: 0s !important;
+    scroll-behavior: auto;
+  }
+}
