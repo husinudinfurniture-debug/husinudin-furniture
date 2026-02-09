@@ -242,3 +242,26 @@ html, body {
   }
 
   .solution-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .steps-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .produk-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ================= LAPTOP ================= */
+@media (min-width: 1024px) {
+  .produk-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ================= DARK MODE ================= */
+:root[data-theme="dark"] .hero {
+  background-blend-mode: overlay;
+}
