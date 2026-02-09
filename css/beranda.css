@@ -1,144 +1,70 @@
-/* =========================================================
-   BERANDA.CSS — FINAL FIX
-   Mobile-first | No horizontal scroll | Hero aman
-   ========================================================= */
-
-/* ================= GLOBAL SAFETY ================= */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html, body {
-  max-width: 100%;
-  overflow-x: hidden;
-}
+/* =================================================
+   BERANDA.CSS
+   Khusus halaman Beranda
+   ================================================= */
 
 /* ================= HERO ================= */
 .hero {
   position: relative;
+  min-height: 60vh;
+  overflow: hidden;
+}
+
+/* Gambar hero */
+.hero > img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay */
+.hero-overlay {
+  position: relative;
+  z-index: 2;
   min-height: 60vh;
 
-  background:
-    linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
-    url("../assets/images/hero.webp") center / cover no-repeat;
-
-  color: var(--text-light);
-  padding-block: var(--section-padding-mobile);
+  background: rgba(0,0,0,.45);
 
   display: flex;
   align-items: center;
-
-  overflow: hidden; /* FIX horizontal scroll */
 }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: inherit;
-  z-index: 0;
+/* Konten hero */
+.hero-content {
+  color: var(--text-invert);
+  max-width: 720px;
 }
 
-.hero .container {
-  position: relative;
-  z-index: 1;
-
-  width: 100%;
-  max-width: 960px;
-  margin-inline: auto;
-  padding-inline: var(--container-padding-mobile);
+.hero-content h1 {
+  margin-bottom: .75rem;
 }
 
-/* ================= HERO ICONS ================= */
-.hero-icons {
+.hero-content p {
+  margin-bottom: 1.25rem;
+  color: rgba(255,255,255,.9);
+}
+
+/* ================= WHY CUSTOM ================= */
+.problem-list {
+  padding-left: 1.25rem;
+}
+
+.problem-list li {
+  margin-bottom: .6rem;
+}
+
+/* ================= ADVANTAGES ================= */
+.solution-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   margin-top: 1.5rem;
 }
 
-.hero-icon {
-  display: flex;
-  align-items: center;
-  gap: .75rem;
-
-  padding: .85rem;
-  border-radius: 12px;
-
-  background: rgba(255,255,255,.12);
-  backdrop-filter: blur(4px);
-}
-
-.hero-icon img {
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
-}
-
-.hero-icon span {
-  font-size: .85rem;
-  font-weight: 500;
-}
-
-/* ================= FEATURE ================= */
-.section-feature {
-  padding-block: var(--section-padding-mobile);
-}
-
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-}
-
-.feature-item {
-  background: var(--bg-light);
-  padding: 1rem;
-  border-radius: 14px;
-  box-shadow: 0 6px 20px rgba(0,0,0,.04);
-
-  display: flex;
-  flex-direction: column;
-}
-
-.feature-item h3 {
-  font-size: .95rem;
-  font-weight: 700;
-  margin-bottom: .4rem;
-}
-
-.feature-item p {
-  font-size: .85rem;
-  color: var(--text-soft);
-  margin-top: auto;
-}
-
-/* feature ke-3 full width di HP */
-.feature-item:nth-child(3) {
-  grid-column: 1 / -1;
-}
-
-/* ================= SOLUTION ================= */
-.solution-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  padding-top: 1.25rem;
-}
-
-.solution-item {
-  background: var(--bg-light);
-  padding: 1rem;
-  border-radius: 14px;
-  box-shadow: 0 6px 18px rgba(0,0,0,.04);
-
-  min-height: 150px;
-  display: flex;
-  flex-direction: column;
+.solution-item h4 {
+  margin-bottom: .25rem;
 }
 
 /* ================= PROCESS ================= */
@@ -146,99 +72,43 @@ html, body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
+  margin-top: 1.5rem;
 }
 
-.steps-grid .step {
-  background: var(--bg-light);
-  padding: 1rem;
-  border-radius: 14px;
-  box-shadow: 0 6px 20px rgba(0,0,0,.04);
-
-  min-height: 150px;
-  display: flex;
-  flex-direction: column;
+.step span {
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: .25rem;
+  display: inline-block;
 }
 
-/* ================= PRODUK ================= */
+/* ================= PRODUCTS ================= */
 .produk-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.25rem;
-  padding-top: 1.25rem;
-}
-
-.produk-card {
-  background: var(--bg-light);
-  padding: 1rem;
-  border-radius: 14px;
-  box-shadow: 0 6px 22px rgba(0,0,0,.04);
-
-  display: flex;
-  flex-direction: column;
-  gap: .75rem;
+  margin-top: 1.5rem;
 }
 
 .produk-card img {
-  width: 100%;
-  max-width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: 12px;
-  display: block;
-}
-
-/* ================= CTA HOME ================= */
-.home-cta {
-  padding-block: var(--section-padding-mobile);
-  margin-bottom: 2.5rem;
-  text-align: center;
-}
-
-.home-cta .container {
-  max-width: 980px;
-  margin-inline: auto;
-
-  background: linear-gradient(135deg, var(--primary), var(--primary-soft));
-  color: var(--text-light);
-
-  padding: 1.5rem;
-  border-radius: 16px;
-  box-shadow: 0 12px 36px rgba(0,0,0,.15);
-}
-
-.home-cta h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
+  border-radius: var(--radius);
   margin-bottom: .75rem;
 }
 
-.home-cta p {
-  font-size: .95rem;
-  margin-bottom: 1.25rem;
-  color: rgba(255,255,255,.95);
+/* ================= CTA ================= */
+.cta h2 {
+  margin-bottom: .5rem;
 }
 
-.home-cta .btn-primary {
-  padding: .85rem 1.75rem;
-  min-height: 48px;
-  font-weight: 700;
-  border-radius: 12px;
+.cta p {
+  margin-bottom: 1.25rem;
 }
 
 /* ================= TABLET ================= */
 @media (min-width: 768px) {
-  .hero { min-height: 65vh; }
-
-  .hero-icons {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .feature-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .feature-item:nth-child(3) {
-    grid-column: auto;
+  .hero,
+  .hero-overlay {
+    min-height: 65vh;
   }
 
   .solution-grid {
@@ -259,9 +129,4 @@ html, body {
   .produk-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-}
-
-/* ================= DARK MODE ================= */
-:root[data-theme="dark"] .hero {
-  background-blend-mode: overlay;
 }
