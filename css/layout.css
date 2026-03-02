@@ -3,14 +3,6 @@
    Tanggung jawab: Struktur, sistem grid, seksi halaman, header/footer
    ========================================================= */
 
-/* ================= ALIAS TITIK PUTUS ================= */
-:root {
-  --breakpoint-sm: var(--bp-sm);
-  --breakpoint-md: var(--bp-md);
-  --breakpoint-lg: var(--bp-lg);
-  --breakpoint-xl: var(--bp-xl);
-  --menu-transition: 0.2s ease;
-}
 
 /* ================= KONTAINER & BATASAN LEBAR ================= */
 .container {
@@ -22,21 +14,7 @@
   box-sizing: border-box;
 }
 
-@media (min-width: var(--bp-md)) {
-  .container {
-    max-width: 1000px;
-    padding-left: var(--container-padding-tablet);
-    padding-right: var(--container-padding-tablet);
-  }
-}
 
-@media (min-width: var(--bp-xl)) {
-  .container {
-    max-width: 1200px;
-    padding-left: var(--container-padding-desktop);
-    padding-right: var(--container-padding-desktop);
-  }
-}
 
 /* Kontainer konten lebar sedang untuk blok yang terpusat dan lebih sempit */
 .mid {
@@ -47,19 +25,7 @@
   box-sizing: border-box;
 }
 
-@media (min-width: var(--bp-lg)) {
-  .mid {
-    max-width: 980px;
-    padding-left: var(--container-padding-tablet);
-    padding-right: var(--container-padding-tablet);
-  }
-}
 
-@media (min-width: var(--bp-xl)) {
-  .mid {
-    max-width: 1100px;
-  }
-}
 
 
 /* ================= HEADER (Kepala halaman) ================= */
@@ -106,11 +72,6 @@
   box-sizing: border-box;
 }
 
-@media (min-width: var(--bp-md)) {
-  .header-inner {
-    min-height: 64px;
-  }
-}
 
 /* Gaya logo */
 .header .logo {
@@ -127,18 +88,7 @@
   z-index: 1010;
 }
 
-@media (min-width: var(--bp-lg)) {
-  .header .logo {
-    font-size: 1.35rem;
-    left: var(--container-padding-tablet);
-  }
-}
 
-@media (min-width: var(--bp-xl)) {
-  .header .logo {
-    left: var(--container-padding-desktop);
-  }
-}
 
 /* ================= TOGEL NAVIGASI (HAMBURGER) ================= */
 .header .nav-toggle {
@@ -151,11 +101,6 @@
   z-index: 1010;
 }
 
-@media (min-width: var(--bp-lg)) {
-  .header .nav-toggle {
-    display: none;
-  }
-}
 
 /* ================= MENU NAVIGASI ================= */
 .nav {
@@ -213,51 +158,6 @@
 }
 
 /* Desktop: tampilkan nav, sembunyikan hamburger */
-@media (min-width: var(--bp-lg)) {
-  .nav {
-    position: static;
-    flex-direction: row;
-    gap: var(--spacing-md);
-    background: transparent;
-    padding: 0;
-    box-shadow: none;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-  }
-
-  .nav a {
-    padding: 0.5rem 0;
-    min-height: auto;
-    background: transparent;
-  }
-
-  .nav a.active::after {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: auto;
-    bottom: 0;
-    width: 100%;
-    height: 2px;
-    border-radius: 2px;
-  }
-
-  .header .nav {
-    position: absolute;
-    right: var(--container-padding-tablet);
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    gap: var(--spacing-md);
-  }
-}
-
-@media (min-width: var(--bp-xl)) {
-  .header .nav {
-    right: var(--container-padding-desktop);
-  }
-}
 
 /* ================= SEKSI ================= */
 .section {
@@ -296,25 +196,7 @@
   margin-bottom: var(--spacing-sm);
 }
 
-@media (min-width: var(--bp-md)) {
-  .section {
-    padding: var(--section-padding-tablet) 0;
-  }
 
-  .section h2 {
-    font-size: var(--h2-size-tablet);
-  }
-}
-
-@media (min-width: var(--bp-xl)) {
-  .section {
-    padding: var(--section-padding-desktop) 0;
-  }
-
-  .section h2 {
-    font-size: var(--h2-size-desktop);
-  }
-}
 
 /* Animasi tampil untuk elemen yang dipicu gulir */
 .reveal {
@@ -335,20 +217,6 @@
   display: grid;
   gap: var(--spacing-xl);
   grid-template-columns: 1fr;
-}
-
-@media (min-width: var(--bp-lg)) {
-  .grid-2cols {
-    grid-template-columns: repeat(2, 1fr);
-    align-items: stretch;
-    gap: var(--spacing-2xl);
-  }
-}
-
-@media (min-width: var(--bp-xl)) {
-  .grid-2cols {
-    gap: calc(var(--spacing-2xl) + 1rem);
-  }
 }
 
 /* ================= FOOTER (Kaki halaman) ================= */
@@ -414,21 +282,7 @@
   text-align: center;
 }
 
-@media (min-width: var(--bp-md)) {
-  .footer-inner {
-    padding: var(--section-padding-tablet) var(--container-padding-tablet);
-  }
-}
 
-@media (min-width: var(--bp-xl)) {
-  .footer {
-    margin-top: var(--spacing-3xl);
-  }
-
-  .footer-inner {
-    padding: var(--section-padding-desktop) var(--container-padding-desktop);
-  }
-}
 
 /* Desktop: jarak seimbang */
 @media (min-width: var(--bp-xl)) {

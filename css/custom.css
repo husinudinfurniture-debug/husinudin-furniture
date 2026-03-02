@@ -33,21 +33,7 @@
   line-height: 1.7;
 }
 
-@media (min-width: var(--bp-lg)) {
-  .custom-hero {
-    padding: var(--spacing-2xl) 0;
-  }
-}
 
-@media (min-width: var(--bp-xl)) {
-  .custom-hero {
-    padding: var(--spacing-3xl) 0;
-  }
-
-  .custom-hero .container {
-    max-width: 860px;
-  }
-}
 
 /* ================= BAGIAN SOLUSI ================= */
 .solution {
@@ -104,19 +90,7 @@
   line-height: 1.6;
 }
 
-@media (min-width: var(--bp-lg)) {
-  .steps-list {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-xl);
-  }
-}
 
-@media (min-width: var(--bp-xl)) {
-  .steps-list {
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--spacing-2xl);
-  }
-}
 
 /* ================= BAGIAN CTA ================= */
 .custom-cta {
@@ -134,15 +108,5 @@
   color: var(--text-soft);
 }
 
-@media (min-width: var(--bp-lg)) {
-  .custom-cta {
-    padding: var(--spacing-2xl) 0;
-  }
-}
 
-@media (min-width: var(--bp-xl)) {
-  .custom-cta {
-    padding: var(--spacing-3xl) 0;
-  }
-}
 

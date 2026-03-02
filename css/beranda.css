@@ -278,11 +278,6 @@
   }
 }
 
-@media (min-width: var(--bp-xl)) {
-  .home-cta {
-    padding: var(--section-padding-desktop) 0;
-  }
-}
 
 /* ================= MODE GELAP ================= */
 :root[data-theme="dark"] .solution-item,
@@ -295,57 +290,3 @@
   background-blend-mode: overlay;
 }
 
-/* Tablet: tingkatkan padding */
-@media (min-width: var(--bp-lg)) {
-  .home-cta { padding: var(--section-padding-tablet) 0; }
-  .home-cta .container { padding: var(--spacing-xl); }
-}
-
-/* Desktop: jarak premium */
-@media (min-width: var(--bp-xl)) {
-  .home-cta { padding: var(--section-padding-desktop) 0; }
-  .home-cta .container { padding: calc(var(--spacing-2xl)); }
-} 
-
-/* ================= RESPONSIF ================= */
-@media (min-width: var(--breakpoint-lg)) {
-  .hero-icons {
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--spacing-lg);
-  }
-
-  .feature-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-xl);
-  }
-
-  .home-product-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-xl);
-  }
-}
-
-@media (min-width: var(--breakpoint-xl)) {
-  .feature-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-2xl);
-  }
-
-  .home-product-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-2xl);
-  }
-
-  .hero .container {
-    max-width: 900px;
-  }
-}
-
-/* ================= DARK MODE ================= */
-:root[data-theme="dark"] .feature-item {
-  background: var(--bg-light);
-}
-
-:root[data-theme="dark"] .hero {
-  background-blend-mode: overlay;
-}
