@@ -11,7 +11,7 @@
   margin-right: calc(50% - 50vw);
   padding: 0;
   box-sizing: border-box;
-  background: linear-gradient(var(--overlay-dark), var(--overlay-dark)), url("../assets/images/hero.webp") center / cover no-repeat;
+  background: linear-gradient(var(--overlay-dark), var(--overlay-dark)), url("../assets/images/hero.jpg") center / cover no-repeat;
   color: var(--text-light);
   display: flex;
   align-items: center;
