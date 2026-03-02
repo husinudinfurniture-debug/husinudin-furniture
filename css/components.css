@@ -1,29 +1,97 @@
 /* =========================================================
-   components.css - Button, Card, Modal, Badge
+   components.css - Komponen ulang pakai: tombol, kartu, modal
+   Tanggung jawab: komponen UI mandiri yang dapat digunakan ulang (metodologi BEM)
    ========================================================= */
 
-/* ================= HAMBURGER BUTTON ================= */
+/* ================= TOMBOL - UTAMA ================= */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+  color: var(--text-light);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  border: none;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  opacity: 0.98;
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:focus-visible {
+  outline: 3px solid var(--primary-soft);
+  outline-offset: 2px;
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ================= TOMBOL - WHATSAPP ================= */
+.btn-wa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.6rem 1rem;
+  background: var(--whatsapp);
+  color: var(--text-light);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+.btn-wa:hover {
+  background: var(--whatsapp-dark);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-wa:active {
+  transform: translateY(0) scale(1);
+}
+
+.btn-wa:focus-visible {
+  outline: 3px solid rgba(0, 0, 0, 0.12);
+  outline-offset: 3px;
+}
+
+/* ================= TOMBOL - HAMBURGER ================= */
 .nav-toggle {
   display: flex;
   align-items: center;
   justify-content: center;
-  
   width: 44px;
   height: 44px;
-  min-height: 44px;
-  
   background: transparent;
   border: 2px solid var(--text-dark);
   border-radius: var(--radius);
   color: var(--text-dark);
   font-size: 1.5rem;
   cursor: pointer;
-  
-  transition: 
-    background-color var(--menu-transition),
-    border-color var(--menu-transition),
-    color var(--menu-transition),
-    transform var(--menu-transition);
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
 }
 
 .nav-toggle:hover {
@@ -43,106 +111,35 @@
   color: var(--text-light);
 }
 
-/* Hiding of hamburger on larger screens handled in `layout.css` */
-
-/* ================= BUTTON ================= */
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-
-  min-height: 44px;
-  padding: 0.75rem 1.5rem;
-
-  background: linear-gradient(
-    135deg,
-    var(--primary),
-    var(--primary-soft)
-  );
-  color: var(--text-light);
-
-  font-size: 0.95rem;
-  font-weight: 600;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  border: none;
-  cursor: pointer;
-
-  transition: 
-    transform var(--transition),
-    box-shadow var(--transition),
-    opacity var(--transition);
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  opacity: 0.98;
-}
-
-.btn-primary:focus-visible {
-  outline: 3px solid var(--primary-soft);
-  outline-offset: 2px;
-}
-
-/* WhatsApp CTA (consolidated) */
-.btn-wa {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-
-  min-width: 44px;
-  min-height: 44px;
-  padding: 0.6rem 1rem;
-
-  background: var(--whatsapp);
-  color: var(--text-light);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  font-weight: 700;
-  text-decoration: none;
-
-  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
-}
-
-.btn-wa:hover {
-  background: var(--whatsapp-dark);
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: var(--shadow-lg);
-}
-
-.btn-wa:focus-visible {
-  outline: 3px solid rgba(0,0,0,0.12);
-  outline-offset: 3px;
-}
-
-
-/* ================= CARD ================= */
-.card,
-.product-card {
+/* ================= KARTU - DASAR ================= */
+.card {
   background: var(--bg-light);
-  border-radius: calc(var(--radius) * 1.1);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
-
-  transition:
-    transform var(--transition),
-    box-shadow var(--transition);
+  transition: transform var(--transition), box-shadow var(--transition);
 }
 
-.card:hover,
-.product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 40px rgba(0,0,0,0.07);
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
 }
 
-/* ================= PRODUCT CARD ================= */
+/* ================= KARTU PRODUK ================= */
 .product-card {
   display: flex;
   flex-direction: column;
   min-height: 340px;
+  background: var(--bg-light);
+  border-radius: calc(var(--radius) * 1.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.07);
 }
 
 .product-card img {
@@ -154,8 +151,10 @@
 }
 
 .product-card .content {
-  padding: var(--spacing-lg); /* larger internal padding for premium feel */
+  padding: var(--spacing-lg);
   flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-card h3 {
@@ -168,24 +167,29 @@
   font-weight: 700;
   color: var(--primary);
   font-size: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .product-card .kategori {
   font-size: 0.8rem;
   color: var(--text-soft);
-  margin-top: 0.5rem;
+  margin-top: auto;
 }
 
-/* ================= BADGE ================= */
+/* ================= LENCANA ================= */
 .badge {
   display: inline-block;
   padding: 0.35rem 0.75rem;
   font-size: 0.75rem;
   font-weight: 600;
   border-radius: 999px;
-
   background: var(--bg-soft);
   color: var(--text-dark);
+}
+
+.badge--primary {
+  background: var(--primary);
+  color: var(--text-light);
 }
 
 /* ================= MODAL ================= */
@@ -194,21 +198,17 @@
   position: fixed;
   inset: 0;
   z-index: 200;
-
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(3px);
-
   align-items: center;
   justify-content: center;
   padding: var(--spacing-lg);
 }
 
-/* Open state controlled via class for accessibility and to avoid inline styles */
 .modal.is-open {
   display: flex;
 }
 
-/* Prevent body scroll when modal is open */
 body.modal-open {
   overflow: hidden;
 }
@@ -217,12 +217,11 @@ body.modal-open {
   background: var(--bg-light);
   border-radius: var(--radius);
   box-shadow: var(--shadow-lg);
-
-  max-width: min(92vw, 540px); /* responsive */
+  max-width: min(92vw, 540px);
   width: 100%;
   padding: clamp(1rem, 2.5vw, var(--spacing-lg));
-
   animation: modalFade var(--transition);
+  position: relative;
 }
 
 @keyframes modalFade {
@@ -238,21 +237,24 @@ body.modal-open {
 
 .modal-content img {
   width: 100%;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius);
   margin-bottom: var(--spacing-md);
+  display: block;
 }
 
 .modal-content h3 {
   margin-bottom: 0.25rem;
+  font-size: 1.1rem;
 }
 
 .modal-content p {
   font-size: 0.9rem;
   color: var(--text-soft);
+  margin-bottom: var(--spacing-md);
 }
 
 .modal-content .harga {
-  margin: 0.5rem 0;
+  margin: 0.5rem 0 var(--spacing-md);
   font-weight: 600;
   color: var(--primary);
 }
@@ -264,22 +266,68 @@ body.modal-open {
   flex-wrap: wrap;
 }
 
-/* Close button */
 .close {
   position: absolute;
   top: 1rem;
   right: 1rem;
-
   font-size: 1.4rem;
   cursor: pointer;
   color: var(--text-soft);
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  transition: color var(--transition);
 }
 
 .close:hover {
   color: var(--primary);
 }
 
-/* ================= DARK MODE ================= */
+/* ================= ELEMEN FORMULIR ================= */
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.input-field__label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.input-field__input,
+.input-field__textarea,
+.input-field__select {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-light);
+  color: var(--text-dark);
+  font-size: 0.95rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.input-field__input::placeholder,
+.input-field__textarea::placeholder {
+  color: var(--text-soft);
+}
+
+.input-field__input:focus,
+.input-field__textarea:focus,
+.input-field__select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(78, 52, 46, 0.1);
+}
+
+/* ================= MODE GELAP ================= */
 :root[data-theme="dark"] .card,
 :root[data-theme="dark"] .product-card,
 :root[data-theme="dark"] .modal-content {
@@ -287,6 +335,14 @@ body.modal-open {
 }
 
 :root[data-theme="dark"] .badge {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
   color: var(--text-dark);
+}
+
+:root[data-theme="dark"] .input-field__input,
+:root[data-theme="dark"] .input-field__textarea,
+:root[data-theme="dark"] .input-field__select {
+  background: var(--bg-light);
+  color: var(--text-dark);
+  border-color: rgba(255, 255, 255, 0.1);
 }

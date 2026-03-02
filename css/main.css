@@ -1,0 +1,28 @@
+/* =========================================================
+   main.css - CSS Architecture Entry Point
+   
+   This file imports all CSS in proper cascade order following
+   a modular, maintainable, and scalable architecture:
+   
+   1. style.css     → Global variables, reset, typography
+   2. layout.css    → Page structure, containers, sections
+   3. components.css → Reusable UI components
+   4. Page-specific CSS (imported in HTML per page)
+   
+   ========================================================= */
+
+/* Step 1: Global Styles - Variables, Reset, Typography, Accessibility */
+@import url("./style.css");
+
+/* Step 2: Layout - Containers, Grid, Header, Footer, Sections */
+@import url("./layout.css");
+
+/* Step 3: Reusable Components - Buttons, Cards, Modals, Forms */
+@import url("./components.css");
+
+/* Step 4: Page-Specific Styles (import in HTML as needed)
+   - beranda.css → Homepage styles
+   - produk.css → Product page styles
+   - tentang.css → About page styles
+   - custom.css → Custom/Order page styles
+*/
