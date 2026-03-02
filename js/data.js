@@ -7,7 +7,7 @@ const produkData = [
     id: 1,
     nama: "Sofa Set Custom – Minimalis Sudut",
     kategori: "Sofa Set Custom",
-    img: "assets/images/sofa1.png",
+    img: "assets/images/sofa10.png",
     harga_min: 3500000,
     harga_max: 6500000,
     deskripsi: "Sofa utama + meja opsional. Bisa custom ukuran, material, warna, finishing."
@@ -16,16 +16,78 @@ const produkData = [
     id: 2,
     nama: "Sofa Set Custom – Minimalis L-Moon",
     kategori: "Sofa Set Custom",
-    img: "assets/images/sofa2.png",
+    img: "assets/images/sofa12.png",
     harga_min: 3500000,
     harga_max: 6500000,
     deskripsi: "Sofa utama + meja opsional. Bisa custom ukuran, material, warna, finishing."
   },
-  // ... sofa lain bisa ditambah tanpa ubah JS
+  {
+    id: 3,
+    nama: "Sofa Set Custom – L Minimalis Modern",
+    kategori: "Sofa Set Custom",
+    img: "assets/images/sofa16.png",
+    harga_min: 3500000,
+    harga_max: 6500000,
+    deskripsi: "Sofa utama + meja opsional. Bisa custom ukuran, material, warna, finishing."
+  },
+  {
+    id: 4,
+    nama: "Sofa Set Custom – Manohara 321",
+    kategori: "Sofa Set Custom",
+    img: "assets/images/sofa01.png",
+    harga_min: 3500000,
+    harga_max: 6500000,
+    deskripsi: "Sofa utama + meja opsional. Bisa custom ukuran, material, warna, finishing."
+  },
+  {
+    id: 5,
+    nama: "Sofa Set Custom – Curved 3 Seater",
+    kategori: "Sofa Set Custom",
+    img: "assets/images/sofa13.png",
+    harga_min: 3500000,
+    harga_max: 6500000,
+    deskripsi: "Sofa utama + meja opsional. Bisa custom ukuran, material, warna, finishing."
+  },
+  {
+    id: 6,
+    nama: "Sofa Set Custom – Sofa Bed Minimalis",
+    kategori: "Sofa Set Custom",
+    img: "assets/images/sofabed1.png",
+    harga_min: 3500000,
+    harga_max: 6500000,
+    deskripsi: "Sofa utama + meja opsional. Bisa custom ukuran, material, warna, finishing."
+  },
+  {
+    id: 7,
+    nama: "Sofa Set Custom – Dracon",
+    kategori: "Sofa Set Custom",
+    img: "assets/images/sofa14.png",
+    harga_min: 3500000,
+    harga_max: 6500000,
+    deskripsi: "Sofa utama + meja opsional. Bisa custom ukuran, material, warna, finishing."
+  },
+  {
+    id: 8,
+    nama: "Sofa Set Custom – Chesterfield",
+    kategori: "Sofa Set Custom",
+    img: "assets/images/sofa03.png",
+    harga_min: 3500000,
+    harga_max: 6500000,
+    deskripsi: "Sofa utama + meja opsional. Bisa custom ukuran, material, warna, finishing."
+  },
+  {
+    id: 9,
+    nama: "Sofa Set Custom – ",
+    kategori: "Sofa Set Custom",
+    img: "assets/images/sofa12.png",
+    harga_min: 3500000,
+    harga_max: 6500000,
+    deskripsi: "Sofa utama + meja opsional. Bisa custom ukuran, material, warna, finishing."
+  },
 
   // ================== Bed Frame Custom ==================
   {
-    id: 20,
+    id: 21,
     nama: "Bed Frame Custom – Minimalis Japandi",
     kategori: "Bed Frame Custom",
     img: "assets/images/bedframe1.jpg",
@@ -36,7 +98,7 @@ const produkData = [
 
   // ================== Kasur Custom ==================
   {
-    id: 21,
+    id: 41,
     nama: "Kasur Custom – Spring Medium",
     kategori: "Kasur Custom",
     img: "assets/images/kasur1.jpg",
@@ -47,7 +109,7 @@ const produkData = [
 
   // ================== Bed Set Custom ==================
   {
-    id: 22,
+    id: 61,
     nama: "Bed Set Custom – Minimalis Modern",
     kategori: "Bed Set Custom",
     img: "assets/images/bed1.png",
@@ -58,7 +120,7 @@ const produkData = [
 
   // ================== Meja & Kursi ==================
   {
-    id: 23,
+    id: 81,
     nama: "Meja & Kursi Custom – Cafe Style",
     kategori: "Meja & Kursi",
     img: "assets/images/mejakursi1.jpg",
