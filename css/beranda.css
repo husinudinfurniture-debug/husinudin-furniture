@@ -7,75 +7,75 @@
 .hero {
   position: relative;
   width: 100%;
-  min-height: 75vh;
+  min-height: 65vh; /* tidak terlalu tinggi */
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 3rem 1.5rem;
-  text-align: center;
+  padding: 4rem 1.5rem;
   color: #fff;
   overflow: hidden;
 }
 
-/* Background layer */
+/* Background image */
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: url("../assets/images/hero.jpg") center center / cover no-repeat;
+  background: url("../assets/images/hero.jpg") center / cover no-repeat;
   z-index: -2;
 }
 
-/* Overlay supaya teks terbaca */
+/* Overlay lebih halus & elegan */
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    to right,
+    90deg,
     rgba(0,0,0,0.75) 0%,
-    rgba(0,0,0,0.65) 40%,
-    rgba(0,0,0,0.5) 100%
+    rgba(0,0,0,0.65) 45%,
+    rgba(0,0,0,0.3) 100%
   );
   z-index: -1;
 }
 
 /* Container teks */
 .hero .container {
-  max-width: 680px;
-  margin: 0 auto;
+  max-width: 600px;
+  margin: 0;
+  text-align: left; /* lebih elegan */
 }
 
 /* Heading */
 .hero h1 {
-  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-size: clamp(1.9rem, 5vw, 2.8rem);
   line-height: 1.2;
   margin-bottom: 1rem;
+  font-weight: 600;
 }
 
 /* Paragraf */
 .hero p {
   font-size: 1rem;
   opacity: 0.9;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.8rem;
+  line-height: 1.6;
 }
 
-@media (min-width: var(--bp-lg)) {
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 60vh;
+    padding: 3rem 1.2rem;
+  }
+
+  .hero .container {
+    max-width: 100%;
+  }
+
   .hero h1 {
-    font-size: clamp(1.8rem, 3.4vw, 3rem);
-  }
-
-  .hero p {
-    font-size: 1rem;
+    font-size: 1.8rem;
   }
 }
-
-@media (min-width: var(--bp-xl)) {
-  .hero h1 {
-    font-size: clamp(2.2rem, 3.2vw, 3.5rem);
-  }
-}
-
 .hero .btn-primary {
   box-shadow: var(--shadow-md);
 }
