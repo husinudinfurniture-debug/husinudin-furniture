@@ -7,46 +7,57 @@
 .hero {
   position: relative;
   width: 100%;
-  min-height: 60vh;
+  min-height: 75vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 3rem 1.5rem;
   text-align: center;
-  padding: 4rem 1.5rem;
   color: #fff;
   overflow: hidden;
 }
 
-/* Background image layer */
+/* Background layer */
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: 
-    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-    url("../assets/images/hero.jpg") center/cover no-repeat;
+  background: url("../assets/images/hero.jpg") center center / cover no-repeat;
+  z-index: -2;
+}
+
+/* Overlay supaya teks terbaca */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.75) 0%,
+    rgba(0,0,0,0.65) 40%,
+    rgba(0,0,0,0.5) 100%
+  );
   z-index: -1;
 }
 
-/* Batasi lebar konten agar rapi */
+/* Container teks */
 .hero .container {
-  max-width: 720px;
+  max-width: 680px;
   margin: 0 auto;
 }
 
 /* Heading */
 .hero h1 {
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
   line-height: 1.2;
   margin-bottom: 1rem;
-  font-weight: 600;
 }
 
 /* Paragraf */
 .hero p {
   font-size: 1rem;
   opacity: 0.9;
-  margin-bottom: 1.8rem;
+  margin-bottom: 1.5rem;
 }
 
 @media (min-width: var(--bp-lg)) {
