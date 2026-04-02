@@ -1,10 +1,10 @@
 /* =========================================================
-   style.css — Gaya global: variabel, reset, tipografi
-   Tujuan: variabel CSS, reset, tipografi dasar, aksesibilitas
-   Tanggung jawab: token, reset global, gaya elemen dasar
+   style.css — Global styles (CLEANED & REFACTORED)
    ========================================================= */
 
-/* ================= VARIABEL AKAR ================= */
+
+/* ================= VARIABLES ================= */
+
 :root {
   /* Colors */
   --primary: #4E342E;
@@ -17,8 +17,8 @@
   --border: #e9e9e9;
   --whatsapp: #25D366;
   --whatsapp-dark: #1ebe5d;
-  
-  /* Color Overlays */
+
+  /* Overlay */
   --overlay-light: rgba(255, 255, 255, 0.1);
   --overlay-light-h: rgba(255, 255, 255, 0.2);
   --overlay-dark: rgba(0, 0, 0, 0.45);
@@ -48,7 +48,7 @@
   --shadow-lg-2: 0 14px 40px rgba(0,0,0,0.07);
   --shadow-xl: 0 18px 60px rgba(0,0,0,0.12);
 
-  /* Transitions */
+  /* Transition */
   --transition: 0.25s ease;
   --transition-fast: 0.15s ease;
   --transition-slow: 0.35s ease;
@@ -59,7 +59,7 @@
   --bp-lg: 1024px;
   --bp-xl: 1280px;
 
-  /* Container & Section Padding */
+  /* Layout */
   --container-padding-mobile: 1rem;
   --container-padding-tablet: 2rem;
   --container-padding-desktop: 3rem;
@@ -67,18 +67,20 @@
   --section-padding-tablet: 3.5rem;
   --section-padding-desktop: 4rem;
 
-  /* Typography Sizes */
+  /* Typography */
   --h2-size-mobile: 1.25rem;
   --h2-size-tablet: 2rem;
   --h2-size-desktop: 2.25rem;
 
-  /* Grid Minimums */
+  /* Grid */
   --grid-min-mobile: 220px;
   --grid-min-tablet: 160px;
   --grid-min-desktop: 120px;
 }
 
-/* Mode gelap: patuhi preferensi sistem */
+
+/* ================= DARK MODE ================= */
+
 @media (prefers-color-scheme: dark) {
   :root {
     --primary: #6B3F2B;
@@ -90,7 +92,6 @@
   }
 }
 
-/* Mode gelap dikendalikan JS secara eksplisit */
 :root[data-theme="dark"] {
   color-scheme: dark;
   --primary: #6B3F2B;
@@ -102,7 +103,8 @@
 }
 
 
-/* ================= RESET & NORMALISASI ================= */
+/* ================= RESET ================= */
+
 *,
 *::before,
 *::after {
@@ -113,29 +115,48 @@
 
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   color: var(--text-dark);
   background: var(--bg-soft);
-  -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
 }
 
-/* Judul */
+
+/* ================= TYPOGRAPHY ================= */
+
 h1, h2, h3, h4, h5, h6 {
-  margin: 0;
   font-weight: 700;
   line-height: 1.2;
 }
 
-/* Tipografi */
+h1 {
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  margin-bottom: var(--spacing-md);
+}
+
+h2 {
+  font-size: clamp(1.25rem, 3.2vw, var(--h2-size-tablet));
+  margin-bottom: var(--spacing-md);
+}
+
+h3 {
+  font-size: 1.05rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+h4 {
+  font-size: 0.95rem;
+  margin-bottom: var(--spacing-sm);
+}
+
 p {
   color: var(--text-soft);
   margin-bottom: var(--spacing-md);
@@ -148,20 +169,14 @@ small,
   color: var(--text-soft);
 }
 
-/* Daftar */
+
+/* ================= ELEMENT RESET ================= */
+
 ul,
 ol {
   list-style: none;
-  margin: 0;
-  padding: 0;
 }
 
-li {
-  margin: 0;
-  padding: 0;
-}
-
-/* Media */
 img,
 picture,
 video,
@@ -172,17 +187,11 @@ svg {
   height: auto;
 }
 
-figure {
-  margin: 0;
-}
-
-/* Formulir */
 input,
 textarea,
 select,
 button {
-  font-family: inherit;
-  font-size: 1rem;
+  font: inherit;
   border: none;
   background: none;
   color: inherit;
@@ -192,13 +201,12 @@ button {
   cursor: pointer;
 }
 
-input:disabled,
-button:disabled {
-  cursor: not-allowed;
+button:disabled,
+input:disabled {
   opacity: 0.6;
+  cursor: not-allowed;
 }
 
-/* Tautan */
 a {
   color: var(--primary);
   text-decoration: none;
@@ -211,7 +219,25 @@ a:focus {
 }
 
 
-/* ================= AKSESIBILITAS & FOKUS ================= */
+/* ================= RESPONSIVE ================= */
+
+@media (min-width: var(--bp-md)) {
+  html { font-size: 17px; }
+  h1 { font-size: 2rem; }
+  h2 { font-size: var(--h2-size-tablet); }
+  h3 { font-size: 1.1rem; }
+}
+
+@media (min-width: var(--bp-lg)) {
+  html { font-size: 18px; }
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: var(--h2-size-desktop); }
+  h3 { font-size: 1.15rem; }
+}
+
+
+/* ================= ACCESSIBILITY ================= */
+
 :focus {
   outline: none;
 }
@@ -223,18 +249,15 @@ a:focus {
 }
 
 .sr-only {
-  position: absolute !important;
+  position: absolute;
   width: 1px;
   height: 1px;
-  padding: 0;
-  margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
 }
 
-/* Pastikan elemen interaktif memenuhi ukuran sentuh minimum */
+
+/* ================= TOUCH TARGET ================= */
+
 button,
 a[role="button"],
 input[type="button"],
@@ -251,74 +274,9 @@ input[type="reset"],
 }
 
 
-/* ================= TIPOGRAFI ================= */
-h1 {
-  font-size: clamp(1.6rem, 4vw, 2.6rem);
-  line-height: 1.12;
-  margin-bottom: var(--spacing-md);
-}
+/* ================= UTILITIES ================= */
 
-h2 {
-  font-size: clamp(1.25rem, 3.2vw, var(--h2-size-tablet));
-  line-height: 1.18;
-  margin-bottom: var(--spacing-md);
-}
-
-h3 {
-  font-size: 1.05rem;
-  line-height: 1.35;
-  margin-bottom: var(--spacing-sm);
-}
-
-h4 {
-  font-size: 0.95rem;
-  line-height: 1.4;
-  margin-bottom: var(--spacing-sm);
-}
-
-
-
-/* Skala font responsif */
-@media (min-width: var(--bp-md)) {
-  html {
-    font-size: 17px;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  h2 {
-    font-size: var(--h2-size-tablet);
-  }
-
-  h3 {
-    font-size: 1.1rem;
-  }
-}
-
-@media (min-width: var(--bp-lg)) {
-  html {
-    font-size: 18px;
-  }
-
-  h1 {
-    font-size: 2.25rem;
-  }
-
-  h2 {
-    font-size: var(--h2-size-desktop);
-  }
-
-  h3 {
-    font-size: 1.15rem;
-  }
-}
-
-/* ================= KELAS UTILITAS ================= */
-.center {
-  text-align: center;
-}
+.center { text-align: center; }
 
 .transition {
   transition: all var(--transition);
@@ -329,37 +287,31 @@ h4 {
   padding: 0.12rem 0.4rem;
   background: rgba(0, 0, 0, 0.04);
   border-radius: var(--radius-sm);
-  font-size: 0.9rem;
   font-family: monospace;
 }
 
-/* ================= GERAK & PENGURANGAN GERAK ================= */
+
+/* ================= REDUCED MOTION ================= */
+
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0s !important;
-    animation-iteration-count: 1 !important;
+  * {
+    animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
   }
 }
 
-/* ================= GAYA CETAK ================= */
+
+/* ================= PRINT ================= */
+
 @media print {
-  *,
-  *::before,
-  *::after {
+  * {
     background: transparent !important;
     color: black !important;
     box-shadow: none !important;
-    text-shadow: none !important;
   }
 
-  a,
-  a:visited {
-    text-decoration: underline;
-  }
+  a { text-decoration: underline; }
 
   pre {
     border: 1px solid #ccc;
