@@ -8,7 +8,7 @@
 :root {
   /* Colors */
   --primary: #4E342E;
-  --primary-soft: #6B3F2B;
+  --primary-soft: #d19479;
   --bg-soft: #F5F1E8;
   --bg-light: #FFFFFF;
 
@@ -91,7 +91,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --primary: #6B3F2B;
-    --primary-soft: #4E342E;
+    --primary-soft: #d19479;
 
     --bg-soft: #1E1E1E;
     --bg-light: #2B2A28;
@@ -108,7 +108,7 @@
   color-scheme: dark;
 
   --primary: #6B3F2B;
-  --primary-soft: #4E342E;
+  --primary-soft: #d19479;
 
   --bg-soft: #1E1E1E;
   --bg-light: #2B2A28;
