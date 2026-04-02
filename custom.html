@@ -1,209 +1,306 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+/* =========================================================
+   CUSTOM PAGE (CLEAN & CONSISTENT)
+   ========================================================= */
 
-  <title>Custom Furniture | Husinudin Furniture</title>
 
-  <!-- SEO -->
-  <meta name="description" content="Layanan furniture custom Husinudin Furniture. Sofa, kursi, meja, dan bed set dibuat sesuai ukuran, fungsi, dan desain ruang Anda.">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://husinudinfurniture-debug.github.io/husinudin-furniture/custom.html">
+/* ================= HERO ================= */
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Custom Furniture | Husinudin Furniture">
-  <meta property="og:description" content="Furniture custom sesuai ruang, fungsi, dan desain. Diproduksi langsung oleh tim Husinudin Furniture.">
-  <meta property="og:url" content="https://husinudinfurniture-debug.github.io/husinudin-furniture/custom.html">
-  <meta property="og:image" content="assets/images/hero.webp">
+.custom-hero {
+  min-height: 58vh;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-2xl) 0;
+}
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/custom.css">
-</head>
+.custom-hero .container {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
 
-<body>
+.custom-hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.2;
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-dark);
+}
 
-<!-- ================= HEADER ================= -->
-<header class="header" role="banner">
-  <div class="container header-inner">
-    <a href="index.html" class="logo">Husinudin Furniture</a>
+.custom-hero p {
+  max-width: 620px;
+  margin: 0 auto var(--spacing-lg);
+  line-height: 1.8;
+  color: var(--text-soft);
+}
 
-    <!-- Hamburger (Mobile) -->
-    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
 
-    <nav class="nav" role="navigation" aria-label="Main Navigation">
-      <a href="index.html">Beranda</a>
-      <a href="produk.html">Produk</a>
-      <a href="custom.html" class="active">Custom</a>
-      <a href="tentang.html">Tentang</a>
-    </nav>
-  </div>
-</header>
+/* ================= HERO ICONS ================= */
 
-<!-- ================= HERO ================= -->
-<section class="custom-hero">
-  <div class="container">
-    <h1>Furniture Custom yang Tepat untuk Setiap Ruang</h1>
-    <p>
-      Fokus pada kebutuhan Anda: ukuran, fungsi, dan estetika.
-      Bukan sekadar custom, tapi solusi nyata untuk ruang Anda.
-    </p>
+.hero-icons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}
 
-    <div class="hero-icons">
-      <div class="hero-icon">
-        <img src="assets/icons/size.svg" alt="Ukuran">
-        <span>Ukuran</span>
-      </div>
-      <div class="hero-icon">
-        <img src="assets/icons/design.svg" alt="Desain">
-        <span>Desain</span>
-      </div>
-      <div class="hero-icon">
-        <img src="assets/icons/material.svg" alt="Material">
-        <span>Material</span>
-      </div>
-      <div class="hero-icon">
-        <img src="assets/icons/finishing.svg" alt="Finishing">
-        <span>Finishing</span>
-      </div>
-    </div>
+.hero-icon {
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
 
-    <a href="https://wa.me/6282113687057?text=Halo%20Husinudin%20Furniture,%0ASaya%20ingin%20konsultasi%20custom%20furniture."
-       class="btn-primary"
-       target="_blank"
-       rel="noopener">
-      Konsultasi Gratis
-    </a>
-  </div>
-</section>
+.hero-icon:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
 
-<!-- ================= MASALAH & SOLUSI ================= -->
-<section class="section problem-solution">
-  <div class="container grid-2cols">
+.hero-icon img {
+  width: 26px;
+  height: 26px;
+  margin-bottom: 6px;
+  object-fit: contain;
+}
 
-    <div class="col problems">
-      <h2>Masalah Pelanggan</h2>
-      <ul>
-        <li>Ruang terbatas → furniture pasaran tidak cocok</li>
-        <li>Desain umum → tidak sesuai karakter interior</li>
-        <li>Material & finishing sering tidak sesuai fungsi</li>
-        <li>Kualitas sulit dipastikan</li>
-      </ul>
-    </div>
+.hero-icon span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-dark);
+}
 
-    <div class="col solutions">
-      <h2>Solusi Husinudin Furniture</h2>
-      <ul>
-        <li>Ukuran presisi sesuai ruang</li>
-        <li>Desain personal & fleksibel</li>
-        <li>Material premium sesuai kebutuhan & budget</li>
-        <li>Proses terkontrol dari awal hingga QC</li>
-      </ul>
-    </div>
 
-  </div>
-</section>
+/* ================= PROBLEM & SOLUTION ================= */
 
-<!-- ================= APA YANG BISA DIKUSTOM ================= -->
-<section class="section light">
-  <div class="container">
-    <h2>Apa yang Bisa Dikustom</h2>
+.problem-solution {
+  padding: var(--spacing-2xl) 0;
+}
 
-    <div class="solution-grid">
-      <div class="solution-item">
-        <h4>Ukuran</h4>
-        <p>Disesuaikan dengan dimensi ruang dan fungsi.</p>
-      </div>
-      <div class="solution-item">
-        <h4>Desain</h4>
-        <p>Minimalis, modern, atau referensi Anda sendiri.</p>
-      </div>
-      <div class="solution-item">
-        <h4>Material</h4>
-        <p>Pilihan bahan terbaik untuk kenyamanan & daya tahan.</p>
-      </div>
-      <div class="solution-item">
-        <h4>Finishing</h4>
-        <p>Warna, tekstur, dan detail akhir sesuai konsep.</p>
-      </div>
-    </div>
-  </div>
-</section>
+.grid-2cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-md);
+}
 
-<!-- ================= ALUR PEMESANAN ================= -->
-<section class="section">
-  <div class="container">
-    <h2>Alur Pemesanan</h2>
+.problems,
+.solutions {
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
 
-    <div class="steps-grid">
-      <div class="step">
-        <span>01</span>
-        <h4>Konsultasi</h4>
-        <p>Diskusi kebutuhan, ukuran, dan referensi via WhatsApp.</p>
-      </div>
-      <div class="step">
-        <span>02</span>
-        <h4>Estimasi</h4>
-        <p>Rencana desain & estimasi harga transparan.</p>
-      </div>
-      <div class="step">
-        <span>03</span>
-        <h4>Produksi</h4>
-        <p>Dikerjakan oleh pengrajin berpengalaman.</p>
-      </div>
-      <div class="step">
-        <span>04</span>
-        <h4>QC & Pengiriman</h4>
-        <p>Quality check lalu dikirim ke lokasi Anda.</p>
-      </div>
-    </div>
-  </div>
-</section>
+/* subtle biar tidak kosong */
+.problems::before,
+.solutions::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top left,
+    rgba(0,0,0,0.03),
+    transparent 60%
+  );
+}
 
-<!-- ================= CTA ================= -->
-<section class="cta">
-  <div class="container">
-    <h2>Mulai Konsultasi Furniture Custom</h2>
-    <p>Hemat waktu, hasil presisi, sesuai kebutuhan ruang Anda.</p>
+.problems:hover,
+.solutions:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
 
-    <a href="https://wa.me/6282113687057?text=Halo%20Husinudin%20Furniture,%0ASaya%20ingin%20konsultasi%20custom%20furniture."
-       class="btn-primary"
-       target="_blank"
-       rel="noopener">
-      Konsultasi via WhatsApp
-    </a>
-  </div>
-</section>
+.problems h2,
+.solutions h2 {
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  margin-bottom: var(--spacing-sm);
+  font-weight: 700;
+  color: var(--text-dark);
+}
 
-<!-- ================= FOOTER (DIKUNCI) ================= -->
-<footer class="footer" role="contentinfo">
-  <div class="container footer-inner">
+.problems ul,
+.solutions ul {
+  padding-left: 18px;
+  margin: 0;
+}
 
-    <div class="footer-brand">
-      <strong>Husinudin Furniture</strong>
-      <p>Furniture custom sesuai ruang & kebutuhan</p>
-    </div>
+.problems li,
+.solutions li {
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.8;
+  color: var(--text-soft);
+}
 
-    <div class="footer-contact">
-      <a href="mailto:husinudinfurniture@gmail.com">Email</a>
-      <a href="https://instagram.com/husinudinfurniture" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://tiktok.com/@husinudinfurniture" target="_blank" rel="noopener">TikTok</a>
-      <a href="https://wa.me/6281234567890" target="_blank" rel="noopener">WhatsApp</a>
-    </div>
 
-    <div class="footer-copy">
-      <p>© 2026 Husinudin Furniture</p>
-    </div>
+/* ================= CUSTOM OPTIONS ================= */
 
-  </div>
-</footer>
+.section.light {
+  padding: var(--spacing-2xl) 0;
+}
 
-<!-- ================= SCRIPTS ================= -->
-<script src="js/main.js" defer></script>
+.section.light h2 {
+  text-align: center;
+  font-size: clamp(1.7rem, 4vw, 2.3rem);
+  margin-bottom: var(--spacing-lg);
+  color: var(--text-dark);
+}
 
-</body>
-</html>
+.solution-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.solution-item {
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.solution-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.solution-item h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-xs);
+  color: var(--text-dark);
+}
+
+.solution-item p {
+  line-height: 1.7;
+  color: var(--text-soft);
+}
+
+
+/* ================= STEPS ================= */
+
+.section h2 {
+  text-align: center;
+  color: var(--text-dark);
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.step {
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.step:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.step span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--text-light);
+
+  font-weight: 700;
+  margin-bottom: var(--spacing-xs);
+}
+
+.step h4 {
+  margin-bottom: var(--spacing-xs);
+  font-size: 1rem;
+  color: var(--text-dark);
+}
+
+.step p {
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+
+
+/* ================= CTA ================= */
+
+.cta {
+  text-align: center;
+  padding: var(--spacing-2xl) 0;
+}
+
+.cta h2 {
+  margin-bottom: var(--spacing-xs);
+  color: var(--text-dark);
+}
+
+.cta p {
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-soft);
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+  .custom-hero {
+    padding: var(--spacing-xl) 0;
+    min-height: auto;
+  }
+
+  .custom-hero h1 {
+    font-size: 2rem;
+  }
+
+  .custom-hero p {
+    font-size: 0.95rem;
+  }
+
+  .hero-icons {
+    gap: var(--spacing-sm);
+  }
+
+  .hero-icon,
+  .problems,
+  .solutions,
+  .solution-item,
+  .step {
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-md);
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .custom-hero h1 {
+    font-size: 1.75rem;
+  }
+
+  .step span {
+    width: 40px;
+    height: 40px;
+    font-size: 0.85rem;
+  }
+
+}
