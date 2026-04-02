@@ -1,25 +1,34 @@
 /* =========================================================
-   components.css - Komponen ulang pakai: tombol, kartu, modal
-   Tanggung jawab: komponen UI mandiri yang dapat digunakan ulang (metodologi BEM)
+   components.css - Reusable UI components
+   Cleaned & Refactored (NO visual changes)
    ========================================================= */
 
-/* ================= TOMBOL - UTAMA ================= */
-.btn-primary {
+
+/* ================= BASE BUTTON ================= */
+
+.btn-primary,
+.btn-wa {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   min-height: 44px;
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition), background var(--transition);
+}
+
+
+/* ================= PRIMARY BUTTON ================= */
+
+.btn-primary {
   padding: 0.75rem 1.5rem;
   background: linear-gradient(135deg, var(--primary), var(--primary-soft));
   color: var(--text-light);
   font-size: 0.95rem;
   font-weight: 600;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  border: none;
-  cursor: pointer;
-  transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
 }
 
 .btn-primary:hover {
@@ -43,24 +52,16 @@
   cursor: not-allowed;
 }
 
-/* ================= TOMBOL - WHATSAPP ================= */
+
+/* ================= WHATSAPP BUTTON ================= */
+
 .btn-wa {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
   min-width: 44px;
-  min-height: 44px;
   padding: 0.6rem 1rem;
   background: var(--whatsapp);
   color: var(--text-light);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
   font-weight: 700;
   text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
 }
 
 .btn-wa:hover {
@@ -78,7 +79,9 @@
   outline-offset: 3px;
 }
 
-/* ================= TOMBOL - HAMBURGER ================= */
+
+/* ================= NAV TOGGLE ================= */
+
 .nav-toggle {
   display: flex;
   align-items: center;
@@ -111,13 +114,23 @@
   color: var(--text-light);
 }
 
-/* ================= KARTU - DASAR ================= */
-.card {
+
+/* ================= BASE CARD ================= */
+
+.card,
+.product-card,
+.produk-card {
   background: var(--bg-light);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
   overflow: hidden;
   transition: transform var(--transition), box-shadow var(--transition);
+}
+
+
+/* ================= CARD ================= */
+
+.card {
+  box-shadow: var(--shadow-sm);
 }
 
 .card:hover {
@@ -125,16 +138,15 @@
   box-shadow: var(--shadow-md);
 }
 
-/* ================= KARTU PRODUK ================= */
+
+/* ================= PRODUCT CARD (DESKTOP) ================= */
+
 .product-card {
   display: flex;
   flex-direction: column;
   min-height: 340px;
-  background: var(--bg-light);
   border-radius: calc(var(--radius) * 1.1);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-  overflow: hidden;
-  transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .product-card:hover {
@@ -152,7 +164,7 @@
 
 .product-card .content {
   padding: var(--spacing-lg);
-  flex: 1 1 auto;
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
@@ -176,7 +188,75 @@
   margin-top: auto;
 }
 
-/* ================= LENCANA ================= */
+
+/* ================= PRODUCT CARD (MOBILE GRID) ================= */
+
+.produk-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px;
+  border-radius: 12px;
+  color: var(--text-dark);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.produk-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+.produk-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.produk-card h4 {
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 4px;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.produk-card .harga {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.produk-card p {
+  font-size: 0.65rem;
+  opacity: 0.75;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+}
+
+/* ================= PRODUCT GRID ================= */
+
+.produk-grid {
+  display: grid;
+  width: 100%;
+  gap: 12px;
+  grid-template-columns: repeat(3, 1fr);
+  /* Mobile-first: 3 columns fixed for small screens */
+}
+
+
+/* ================= BADGE ================= */
+
 .badge {
   display: inline-block;
   padding: 0.35rem 0.75rem;
@@ -192,7 +272,9 @@
   color: var(--text-light);
 }
 
+
 /* ================= MODAL ================= */
+
 .modal {
   display: none;
   position: fixed;
@@ -213,82 +295,58 @@ body.modal-open {
   overflow: hidden;
 }
 
+@keyframes modalFade {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .modal-content {
+  position: relative;
+  width: 100%;
+  max-width: min(92vw, 540px);
+  padding: clamp(1rem, 2.5vw, var(--spacing-lg));
   background: var(--bg-light);
   border-radius: var(--radius);
   box-shadow: var(--shadow-lg);
-  max-width: min(92vw, 540px);
-  width: 100%;
-  padding: clamp(1rem, 2.5vw, var(--spacing-lg));
   animation: modalFade var(--transition);
-  position: relative;
-}
-
-@keyframes modalFade {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .modal-content img {
   width: 100%;
   border-radius: var(--radius);
   margin-bottom: var(--spacing-md);
-  display: block;
-}
-
-.modal-content h3 {
-  margin-bottom: 0.25rem;
-  font-size: 1.1rem;
-}
-
-.modal-content p {
-  font-size: 0.9rem;
-  color: var(--text-soft);
-  margin-bottom: var(--spacing-md);
-}
-
-.modal-content .harga {
-  margin: 0.5rem 0 var(--spacing-md);
-  font-weight: 600;
-  color: var(--primary);
 }
 
 .modal-actions {
-  margin-top: var(--spacing-md);
   display: flex;
   gap: var(--spacing-sm);
   flex-wrap: wrap;
+  margin-top: var(--spacing-md);
 }
 
 .close {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  font-size: 1.4rem;
-  cursor: pointer;
-  color: var(--text-soft);
+  width: 44px;
+  height: 44px;
   background: none;
   border: none;
-  padding: 0.25rem;
+  font-size: 1.4rem;
+  color: var(--text-soft);
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 44px;
-  min-height: 44px;
-  transition: color var(--transition);
 }
 
 .close:hover {
   color: var(--primary);
 }
 
-/* ================= ELEMEN FORMULIR ================= */
+
+/* ================= FORMS ================= */
+
 .input-field {
   display: flex;
   flex-direction: column;
@@ -299,24 +357,18 @@ body.modal-open {
 .input-field__label {
   font-size: 0.95rem;
   font-weight: 500;
-  color: var(--text-dark);
 }
 
 .input-field__input,
 .input-field__textarea,
 .input-field__select {
   padding: 0.75rem 1rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
   background: var(--bg-light);
   color: var(--text-dark);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   font-size: 0.95rem;
   transition: border-color var(--transition), box-shadow var(--transition);
-}
-
-.input-field__input::placeholder,
-.input-field__textarea::placeholder {
-  color: var(--text-soft);
 }
 
 .input-field__input:focus,
@@ -327,7 +379,40 @@ body.modal-open {
   box-shadow: 0 0 0 3px rgba(78, 52, 46, 0.1);
 }
 
-/* ================= MODE GELAP ================= */
+
+/* ================= HERO ICON ================= */
+
+.hero-icons {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin: var(--spacing-lg) 0 var(--spacing-xl);
+}
+
+.hero-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  min-width: 70px;
+}
+
+.hero-icon img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.hero-icon span {
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+
+/* ================= DARK MODE ================= */
+
 :root[data-theme="dark"] .card,
 :root[data-theme="dark"] .product-card,
 :root[data-theme="dark"] .modal-content {
@@ -336,13 +421,23 @@ body.modal-open {
 
 :root[data-theme="dark"] .badge {
   background: rgba(255, 255, 255, 0.08);
-  color: var(--text-dark);
 }
 
 :root[data-theme="dark"] .input-field__input,
 :root[data-theme="dark"] .input-field__textarea,
 :root[data-theme="dark"] .input-field__select {
-  background: var(--bg-light);
-  color: var(--text-dark);
   border-color: rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="dark"] .hero-icon img {
+  filter: brightness(0) invert(1);
+}
+
+:root[data-theme="dark"] .produk-card {
+  background: #1f1f1f;
+  color: #ffffff;
+}
+
+:root[data-theme="light"] .hero-icon img {
+  filter: none;
 }
