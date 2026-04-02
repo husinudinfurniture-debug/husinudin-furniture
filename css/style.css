@@ -92,23 +92,32 @@
   :root {
     --primary: #6B3F2B;
     --primary-soft: #4E342E;
+
     --bg-soft: #1E1E1E;
     --bg-light: #2B2A28;
-    --text-dark: #EEEEEE;
-    --text-soft: #D0CFCB;
+
+    /* diperjelas dikit (ini yang bikin beda signifikan) */
+    --text-dark: #f2f2f2;
+    --text-soft: #c2c2c2;
+
+    --border: rgba(255,255,255,0.08);
   }
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
+
   --primary: #6B3F2B;
   --primary-soft: #4E342E;
+
   --bg-soft: #1E1E1E;
   --bg-light: #2B2A28;
-  --text-dark: #EEEEEE;
-  --text-soft: #D0CFCB;
-}
 
+  --text-dark: #f2f2f2;
+  --text-soft: #c2c2c2;
+
+  --border: rgba(255,255,255,0.08);
+}
 
 /* ================= RESET ================= */
 
