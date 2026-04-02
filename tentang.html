@@ -4,25 +4,25 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Tentang Kami | Husinudin Furniture</title>
+  <title>Produk Custom | Husinudin Furniture</title>
 
   <!-- SEO -->
-  <meta name="description" content="Husinudin Furniture: cerita, nilai, dan proses produksi furniture custom dengan kualitas, transparansi, dan tanggung jawab jangka panjang.">
+  <meta name="description" content="Lihat berbagai produk furniture custom Husinudin Furniture. Sofa, bed frame, kasur, meja, dan kursi dibuat sesuai kebutuhan ruang Anda.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://husinudinfurniture-debug.github.io/husinudin-furniture/tentang.html">
+  <link rel="canonical" href="https://husinudinfurniture-debug.github.io/husinudin-furniture/produk.html">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Tentang Kami | Husinudin Furniture">
-  <meta property="og:description" content="Cerita, nilai, dan proses kerja Husinudin Furniture dalam menghadirkan furniture custom yang fungsional dan berkualitas.">
-  <meta property="og:url" content="https://husinudinfurniture-debug.github.io/husinudin-furniture/tentang.html">
-  <meta property="og:image" content="assets/images/workshop.webp">
+  <meta property="og:title" content="Produk Custom | Husinudin Furniture">
+  <meta property="og:description" content="Furniture custom berkualitas, diproduksi langsung sesuai ruang dan kebutuhan Anda.">
+  <meta property="og:url" content="https://husinudinfurniture-debug.github.io/husinudin-furniture/produk.html">
+  <meta property="og:image" content="assets/images/hero.webp">
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/tentang.css">
+  <link rel="stylesheet" href="css/produk.css">
 </head>
 
 <body>
@@ -33,115 +33,65 @@
     <a href="index.html" class="logo">Husinudin Furniture</a>
 
     <!-- Hamburger (Mobile) -->
-    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
 
     <nav class="nav" role="navigation" aria-label="Main Navigation">
       <a href="index.html">Beranda</a>
-      <a href="produk.html">Produk</a>
+      <a href="produk.html" class="active">Produk</a>
       <a href="custom.html">Custom</a>
-      <a href="tentang.html" class="active">Tentang</a>
+      <a href="tentang.html">Tentang</a>
     </nav>
   </div>
 </header>
+<!-- MAIN -->
+<main class="container">
 
-<!-- ================= HERO ================= -->
-<section class="about-hero">
-  <div class="container">
-    <h1>Bukan Sekadar Membuat Furniture</h1>
-    <p>
-      Husinudin Furniture hadir untuk menghadirkan furniture
-      yang benar-benar sesuai dengan ruang, fungsi, dan kebutuhan pelanggan —
-      dikerjakan dengan tanggung jawab dan perhatian pada detail.
-    </p>
-  </div>
-</section>
+  <h1 class="section-title">Produk Custom Kami</h1>
 
-<!-- ================= CERITA ================= -->
-<section class="section">
-  <div class="container about-grid">
-    <div class="about-text">
-      <h2>Cerita di Balik Husinudin Furniture</h2>
-      <p>
-        Berawal dari pengalaman keluarga kami di dunia furniture —
-        dari bengkel kecil hingga memahami standar kualitas yang baik.
-      </p>
-      <p>
-        Prinsip kami hari ini: setiap furniture harus presisi, fungsional,
-        dan berkualitas tinggi.
-      </p>
-      <p>
-        Diproduksi langsung tanpa perantara agar komunikasi jujur,
-        proses terkontrol, dan hasil akhir sesuai janji.
-      </p>
-    </div>
+  <!-- SEARCH -->
+  <input
+    id="searchInput"
+    class="search"
+    type="text"
+    placeholder="Cari produk furniture..."
+    aria-label="Cari produk"
+  >
 
-    <div class="about-image">
-      <img src="assets/images/workshop.webp" alt="Proses kerja Husinudin Furniture" loading="lazy">
-    </div>
-  </div>
-</section>
+<div class="kategori">
+  <button class="active" data-kategori="semua">Semua</button>
+  <button data-kategori="sofa">Sofa</button>
+  <button data-kategori="tidur">Tempat Tidur</button>
+</div>
 
-<!-- ================= NILAI ================= -->
-<section class="section light">
-  <div class="container">
-    <h2>Nilai yang Menjadi Pegangan Kami</h2>
+  <!-- GRID PRODUK -->
+  <div id="produk-list" class="produk-grid" aria-live="polite"></div>
 
-    <div class="values-grid">
-      <div class="value-item">
-        <h3>Kualitas yang Masuk Akal</h3>
-        <p>Material dipilih berdasarkan fungsi dan daya tahan, bukan sekadar tampilan.</p>
-      </div>
-      <div class="value-item">
-        <h3>Proses yang Jelas</h3>
-        <p>Konsultasi, estimasi, produksi, hingga pengiriman dijelaskan sejak awal secara transparan.</p>
-      </div>
-      <div class="value-item">
-        <h3>Tanggung Jawab Jangka Panjang</h3>
-        <p>Kami bertanggung jawab pada hasil akhir, bukan hanya sampai furniture terkirim.</p>
-      </div>
-    </div>
-  </div>
-</section>
+</main>
 
-<!-- ================= PROSES KERJA ================= -->
-<section class="section">
-  <div class="container">
-    <h2>Bagaimana Kami Bekerja</h2>
+<!-- MODAL DETAIL PRODUK -->
+<div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal-content">
+    <button class="close" aria-label="Tutup">&times;</button>
 
-    <ol class="process-list">
-      <li>
-        <span>01</span>
-        <p>Konsultasi kebutuhan, ukuran ruang, dan referensi pelanggan</p>
-      </li>
-      <li>
-        <span>02</span>
-        <p>Penyusunan konsep & estimasi biaya secara transparan</p>
-      </li>
-      <li>
-        <span>03</span>
-        <p>Produksi oleh tim berpengalaman dengan kontrol kualitas</p>
-      </li>
-      <li>
-        <span>04</span>
-        <p>Pengecekan akhir & pengiriman ke lokasi pelanggan</p>
-      </li>
-    </ol>
-  </div>
-</section>
+    <img id="modalImg" alt="Detail produk furniture">
 
-<!-- ================= CTA ================= -->
-<section class="cta">
-  <div class="container">
-    <h2>Siap Berdiskusi Tentang Furniture Anda?</h2>
-    <p>Ceritakan kebutuhan ruang Anda, kami akan bantu memberikan solusi tepat & realistis.</p>
+    <h3 id="modalNama"></h3>
+    <p id="modalKategori" class="muted"></p>
+    <p id="modalHarga" class="harga-modal"></p>
+    <p id="modalDesc"></p>
 
-    <a href="https://wa.me/6281234567890" class="btn-primary" target="_blank" rel="noopener">
-      Hubungi via WhatsApp
+    <a
+      id="modalWa"
+      class="btn-wa"
+      target="_blank"
+      rel="noopener"
+    >
+      Konsultasi via WhatsApp
     </a>
   </div>
-</section>
+</div>
 
-<!-- ================= FOOTER (DIKUNCI) ================= -->
+<!-- FOOTER (KONSISTEN – DIKUNCI) -->
 <footer class="footer" role="contentinfo">
   <div class="container footer-inner">
 
@@ -154,7 +104,7 @@
       <a href="mailto:husinudinfurniture@gmail.com">Email</a>
       <a href="https://instagram.com/husinudinfurniture" target="_blank" rel="noopener">Instagram</a>
       <a href="https://tiktok.com/@husinudinfurniture" target="_blank" rel="noopener">TikTok</a>
-      <a href="https://wa.me/6281234567890" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://wa.me/6282113687057" target="_blank" rel="noopener">WhatsApp</a>
     </div>
 
     <div class="footer-copy">
@@ -164,7 +114,8 @@
   </div>
 </footer>
 
-<!-- ================= SCRIPTS ================= -->
+<!-- SCRIPT -->
+<script src="js/data.js" defer></script>
 <script src="js/main.js" defer></script>
 
 </body>
