@@ -1,102 +1,103 @@
-/* =========================================================
-   tentang.css - Gaya khusus halaman tentang
-   Tanggung jawab: tata letak halaman tentang dan seksi konten
-   ========================================================= */
+/* ===== About Page ===== */
 
-/* ================= HERO SECTION ================= */
+
+/* ===== Hero ===== */
+
 .about-hero {
-  background: linear-gradient(180deg, var(--bg-soft), var(--bg-light));
-  padding: var(--spacing-xl) 0;
-  display: flex;
-  align-items: center;
-  min-height: 50vh;
+  padding: 80px 0;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    var(--bg-soft),
+    var(--bg-light)
+  );
 }
 
 .about-hero .container {
   max-width: 760px;
-  text-align: center;
-  padding-left: var(--container-padding-mobile);
-  padding-right: var(--container-padding-mobile);
   margin: 0 auto;
 }
 
 .about-hero h1 {
-  font-size: clamp(1.9rem, 5vw, 2.8rem);
+  font-size: clamp(2rem, 5vw, 3rem);
   line-height: 1.2;
-  margin-bottom: var(--spacing-lg);
+  font-weight: 800;
+  margin-bottom: 18px;
+  color: var(--text-dark);
 }
 
 .about-hero p {
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.9;
   color: var(--text-soft);
-  font-size: 1rem;
-  line-height: 1.7;
 }
 
-@media (min-width: var(--bp-lg)) {
-  .about-hero {
-    padding: var(--spacing-2xl) 0;
-  }
-}
 
-@media (min-width: var(--bp-xl)) {
-  .about-hero {
-    padding: var(--spacing-3xl) 0;
-  }
+/* ===== Story Section ===== */
 
-  .about-hero .container {
-    max-width: 900px;
-  }
-}
-
-/* ================= STORY GRID ================= */
 .about-grid {
-  display: grid;
-  gap: var(--spacing-xl);
-  align-items: center;
-  grid-template-columns: 1fr;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.about-text {
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.about-text:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
 }
 
 .about-text h2 {
-  margin-bottom: var(--spacing-lg);
-  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  margin-bottom: 20px;
+  color: var(--text-dark);
 }
 
 .about-text p {
+  margin-bottom: 16px;
+  line-height: 1.9;
   color: var(--text-soft);
-  font-size: 0.95rem;
-  margin-bottom: var(--spacing-md);
-  line-height: 1.7;
 }
 
-.about-image img {
-  width: 100%;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-md);
-  object-fit: cover;
-  display: block;
+.about-text p:last-child {
+  margin-bottom: 0;
 }
 
-@media (min-width: var(--bp-lg)) {
-  .about-grid {
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: var(--spacing-2xl);
-  }
+
+/* ===== Values ===== */
+
+.section.light {
+  background: var(--bg-soft);
 }
 
-/* ================= VALUES GRID ================= */
+.section.light h2 {
+  text-align: center;
+  font-size: clamp(1.7rem, 4vw, 2.3rem);
+  margin-bottom: 42px;
+  color: var(--text-dark);
+}
+
 .values-grid {
   display: grid;
-  gap: var(--spacing-lg);
-  grid-template-columns: 1fr;
-  margin-top: var(--spacing-lg);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
 .value-item {
   background: var(--bg-light);
-  padding: var(--spacing-lg);
-  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 28px;
   box-shadow: var(--shadow-sm);
-  transition: transform var(--transition), box-shadow var(--transition);
+  transition: all 0.3s ease;
 }
 
 .value-item:hover {
@@ -105,98 +106,144 @@
 }
 
 .value-item h3 {
-  margin-bottom: 0.5rem;
   font-size: 1.1rem;
   font-weight: 700;
-}
-
-.value-item p {
-  font-size: 0.9rem;
-  color: var(--text-soft);
-  margin: 0;
-}
-
-@media (min-width: var(--bp-lg)) {
-  .values-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-xl);
-  }
-}
-
-/* ================= PROCESS LIST ================= */
-.process-list {
-  margin-top: var(--spacing-lg);
-  padding: 0;
-  display: grid;
-  gap: 0;
-}
-
-.process-list li {
-  list-style: none;
-  display: flex;
-  align-items: flex-start;
-  gap: var(--spacing-md);
-  padding: var(--spacing-md) 0;
-  border-bottom: 1px solid var(--border);
-  transition: background-color var(--transition);
-}
-
-.process-list li:last-child {
-  border-bottom: none;
-}
-
-.process-list span {
-  font-weight: 700;
-  color: var(--primary);
-  min-width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.process-list p {
-  font-size: 0.95rem;
-  color: var(--text-soft);
-  margin: 0;
-  line-height: 1.6;
-}
-
-/* ================= CTA SECTION ================= */
-.cta {
-  text-align: center;
-  padding: var(--spacing-xl) 0;
-}
-
-.cta h2 {
-  margin-bottom: var(--spacing-md);
-  font-size: clamp(1.5rem, 4vw, 2.2rem);
-}
-
-.cta p {
-  margin-bottom: var(--spacing-lg);
-  color: var(--text-soft);
-}
-
-@media (min-width: var(--bp-lg)) {
-  .cta {
-    padding: var(--spacing-2xl) 0;
-  }
-}
-
-@media (min-width: var(--bp-xl)) {
-  .cta {
-    padding: var(--spacing-3xl) 0;
-  }
-}
-
-/* ================= DARK MODE ================= */
-:root[data-theme="dark"] .value-item {
-  background: var(--bg-light);
+  margin-bottom: 14px;
   color: var(--text-dark);
 }
 
-:root[data-theme="dark"] .process-list li {
-  border-bottom-color: var(--overlay-light);
+.value-item p {
+  line-height: 1.8;
+  color: var(--text-soft);
+}
+
+
+/* ===== Process Section ===== */
+
+.section h2 {
+  text-align: center;
+  color: var(--text-dark);
+}
+
+.process-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-top: 42px;
+  list-style: none;
+  padding: 0;
+}
+
+.process-list li {
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.process-list li:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.process-list span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 46px;
+  height: 46px;
+
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--text-light);
+
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.process-list p {
+  margin: 0;
+  line-height: 1.8;
+  color: var(--text-soft);
+}
+
+
+/* ===== CTA ===== */
+
+.cta {
+  text-align: center;
+  padding: 72px 0;
+  background: var(--bg-soft);
+}
+
+.cta h2 {
+  margin-bottom: 16px;
+  color: var(--text-dark);
+}
+
+.cta p {
+  margin-bottom: 24px;
+  color: var(--text-soft);
+  line-height: 1.8;
+}
+
+
+/* ===== Tablet ===== */
+
+@media (max-width: 992px) {
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ===== Mobile ===== */
+
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 60px 0;
+  }
+
+  .about-hero h1 {
+    font-size: 2rem;
+  }
+
+  .about-text,
+  .value-item,
+  .process-list li {
+    padding: 22px;
+    border-radius: 18px;
+  }
+
+  .values-grid,
+  .process-list {
+    gap: 18px;
+  }
+}
+
+
+/* ===== Small Mobile ===== */
+
+@media (max-width: 480px) {
+  .about-hero h1 {
+    font-size: 1.75rem;
+  }
+
+  .about-hero p {
+    font-size: 0.95rem;
+  }
+
+  .process-list span {
+    width: 42px;
+    height: 42px;
+    font-size: 0.85rem;
+  }
 }
