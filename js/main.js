@@ -1,22 +1,30 @@
 /* =========================================================
-   MAIN.JS - FINAL CLEAN VERSION (STABLE & MAINTAINABLE)
+   MAIN.JS - FINAL UPGRADED VERSION
+   Stable • Conversion Oriented • Harga Mulai Dari
    ========================================================= */
-document.addEventListener("DOMContentLoaded", () => {
 
+document.addEventListener("DOMContentLoaded", () => {
   /* ================= HEADER ACTIVE ================= */
   const path = window.location.pathname;
-  document.querySelectorAll(".nav a").forEach(link => {
-    if (link.getAttribute("href") === path.split("/").pop()) {
+
+  document.querySelectorAll(".nav a").forEach((link) => {
+    const href = link.getAttribute("href");
+    const currentPage = path.split("/").pop();
+
+    if (href === currentPage) {
       link.classList.add("active");
     }
   });
 
   /* ================= THEME ================= */
-  (function () {
-    const stored = localStorage.getItem("theme");
-    if (stored) {
-      document.documentElement.setAttribute("data-theme", stored);
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  (() => {
+    const storedTheme = localStorage.getItem("theme");
+
+    if (storedTheme) {
+      document.documentElement.setAttribute("data-theme", storedTheme);
+    } else if (
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
       document.documentElement.setAttribute("data-theme", "dark");
     }
   })();
@@ -27,13 +35,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (navToggle && nav) {
     navToggle.addEventListener("click", () => {
-      const open = navToggle.getAttribute("aria-expanded") === "true";
-      navToggle.setAttribute("aria-expanded", !open);
+      const isOpen =
+        navToggle.getAttribute("aria-expanded") === "true";
+
+      navToggle.setAttribute("aria-expanded", !isOpen);
       nav.classList.toggle("active");
     });
   }
 
-  /* ================= PRODUK ================= */
+  /* ================= HEADER SCROLL ================= */
+  const header = document.querySelector(".header");
+
+  if (header) {
+    window.addEventListener("scroll", () => {
+      header.classList.toggle("scrolled", window.scrollY > 10);
+    });
+  }
+
+  /* ================= ELEMENTS ================= */
   const container = document.getElementById("produk-list");
   const searchInput = document.getElementById("searchInput");
   const kategoriBtns = document.querySelectorAll(".kategori button");
@@ -49,119 +68,178 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let kategoriAktif = "semua";
 
-  /* ================= RENDER ================= */
+  /* ================= HELPERS ================= */
+  function formatRupiah(number) {
+    return `Rp ${Number(number).toLocaleString("id-ID")}`;
+  }
+
+  function createWaMessage(product) {
+    return encodeURIComponent(
+      `Halo, saya tertarik dengan model ${product.nama}.
+Saya ingin konsultasi ukuran, warna, bahan, dan estimasi pengerjaan.`
+    );
+  }
+
+  /* ================= CREATE CARD ================= */
+  function createProductCard(product) {
+    const card = document.createElement("div");
+    card.className = "produk-card";
+
+    card.innerHTML = `
+      <img src="${product.img}" alt="${product.nama}" loading="lazy">
+
+      <h4>${product.nama}</h4>
+
+      <div class="harga">
+        Harga mulai dari ${formatRupiah(product.harga_mulai)}
+      </div>
+
+      <p>
+        ✔ Custom ukuran <br>
+        ✔ Custom warna <br>
+        ✔ Workshop sendiri
+      </p>
+    `;
+
+    card.addEventListener("click", () => bukaModal(product));
+
+    return card;
+  }
+
+  /* ================= FILTER PRODUCTS ================= */
+  function getFilteredProducts() {
+    const keyword = searchInput?.value.toLowerCase().trim() || "";
+
+    return produkData.filter((product) => {
+      const cocokNama = product.nama
+        .toLowerCase()
+        .includes(keyword);
+
+      const cocokKategori =
+        kategoriAktif === "semua" ||
+        product.kategori.toLowerCase() === kategoriAktif;
+
+      return cocokNama && cocokKategori;
+    });
+  }
+
+  /* ================= EMPTY STATE ================= */
+  function renderEmptyState() {
+    container.innerHTML = `
+      <div class="empty-state">
+        Produk tidak ditemukan.
+      </div>
+    `;
+  }
+
+  /* ================= RENDER PRODUCTS ================= */
   function renderProduk() {
     if (!container) return;
 
     container.innerHTML = "";
 
-    const keyword = searchInput?.value.toLowerCase() || "";
+    const hasil = getFilteredProducts();
 
-    const hasil = produkData.filter(p => {
-      const cocokNama = p.nama.toLowerCase().includes(keyword);
-      const cocokKategori =
-        kategoriAktif === "semua" || p.kategori === kategoriAktif;
+    if (!hasil.length) {
+      renderEmptyState();
+      return;
+    }
 
-      return cocokNama && cocokKategori;
+    const fragment = document.createDocumentFragment();
+
+    hasil.forEach((product) => {
+      fragment.appendChild(createProductCard(product));
     });
 
-    hasil.forEach(p => {
-      const card = document.createElement("div");
-      card.className = "produk-card";
-
-      card.innerHTML = `
-        <img src="${p.img}" alt="${p.nama}" loading="lazy">
-        <h4>${p.nama}</h4>
-        <div class="harga">
-          Rp ${p.harga_min.toLocaleString("id-ID")} – Rp ${p.harga_max.toLocaleString("id-ID")}
-        </div>
-        <p>${p.deskripsi}</p>
-      `;
-
-      /* 🔥 FIX: EVENT CLICK HARUS DI SINI */
-      card.addEventListener("click", () => bukaModal(p));
-
-      container.appendChild(card);
-    });
+    container.appendChild(fragment);
   }
 
-  /* ================= FILTER ================= */
-  kategoriBtns.forEach(btn => {
+  /* ================= FILTER BUTTONS ================= */
+  kategoriBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-      kategoriBtns.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
+      kategoriBtns.forEach((b) =>
+        b.classList.remove("active")
+      );
 
-      kategoriAktif = btn.dataset.kategori;
+      btn.classList.add("active");
+      kategoriAktif = btn.dataset.kategori.toLowerCase();
+
       renderProduk();
+
+      container?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     });
   });
 
+  /* ================= SEARCH ================= */
   if (searchInput) {
     searchInput.addEventListener("input", renderProduk);
   }
 
-  /* ================= MODAL ================= */
-  function bukaModal(p) {
+  /* ================= OPEN MODAL ================= */
+  function bukaModal(product) {
     if (!modal) return;
 
-    modalImg.src = p.img;
-    modalNama.textContent = p.nama;
-    modalKategori.textContent = p.kategori;
+    modalImg.src = product.img;
+    modalImg.alt = product.nama;
+
+    modalNama.textContent = product.nama;
+    modalKategori.textContent = product.kategori;
 
     modalHarga.textContent =
-      `Rp ${p.harga_min.toLocaleString("id-ID")} – Rp ${p.harga_max.toLocaleString("id-ID")}`;
+      `Harga mulai dari ${formatRupiah(product.harga_mulai)}`;
 
-    modalDesc.textContent = p.deskripsi;
+    modalDesc.textContent = product.deskripsi;
 
     modalWa.href =
-      "https://wa.me/6282113687057?text=" +
-      encodeURIComponent(`Halo, saya tertarik dengan ${p.nama}`);
+      `https://wa.me/6282113687057?text=${createWaMessage(
+        product
+      )}`;
 
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
+
     document.body.classList.add("modal-open");
   }
 
+  /* ================= CLOSE MODAL ================= */
   function tutupModal() {
     if (!modal) return;
 
     modal.classList.remove("is-open");
     modal.setAttribute("aria-hidden", "true");
+
     document.body.classList.remove("modal-open");
   }
 
-  if (closeBtn) closeBtn.addEventListener("click", tutupModal);
+  if (closeBtn) {
+    closeBtn.addEventListener("click", tutupModal);
+  }
 
   document.addEventListener("click", (e) => {
-    if (modal && modal.classList.contains("is-open")) {
-      if (e.target === modal) {
-        tutupModal();
-      }
+    if (
+      modal &&
+      modal.classList.contains("is-open") &&
+      e.target === modal
+    ) {
+      tutupModal();
     }
   });
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      if (modal && modal.classList.contains("is-open")) {
-        tutupModal();
-      }
+    if (
+      e.key === "Escape" &&
+      modal &&
+      modal.classList.contains("is-open")
+    ) {
+      tutupModal();
     }
   });
-
-  /* ================= HEADER SCROLL ================= */
-const header = document.querySelector(".header");
-
-if (header) {
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 10) {
-      header.classList.add("scrolled");
-    } else {
-      header.classList.remove("scrolled");
-    }
-  });
-}
 
   /* ================= INIT ================= */
-  if (container) renderProduk();
-
+  if (container && typeof produkData !== "undefined") {
+    renderProduk();
+  }
 });
