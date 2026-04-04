@@ -7,137 +7,253 @@
   <title>Produk Custom | Husinudin Furniture</title>
 
   <!-- SEO -->
-  <meta name="description" content="Lihat berbagai produk furniture custom Husinudin Furniture. Sofa, bed frame, kasur, meja, dan kursi dibuat sesuai kebutuhan ruang Anda.">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://husinudinfurniture-debug.github.io/husinudin-furniture/produk.html">
+  <meta
+    name="description"
+    content="Lihat berbagai produk furniture custom Husinudin Furniture. Sofa, bed frame, kasur, meja, dan kursi dibuat sesuai kebutuhan ruang Anda."
+  />
+  <meta name="robots" content="index, follow" />
+  <link
+    rel="canonical"
+    href="https://husinudinfurniture-debug.github.io/husinudin-furniture/produk.html"
+  />
 
   <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Produk Custom | Husinudin Furniture">
-  <meta property="og:description" content="Furniture custom berkualitas, diproduksi langsung sesuai ruang dan kebutuhan Anda.">
-  <meta property="og:url" content="https://husinudinfurniture-debug.github.io/husinudin-furniture/produk.html">
-  <meta property="og:image" content="assets/images/hero.webp">
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Produk Custom | Husinudin Furniture" />
+  <meta
+    property="og:description"
+    content="Furniture custom berkualitas, diproduksi langsung sesuai ruang dan kebutuhan Anda."
+  />
+  <meta
+    property="og:url"
+    content="https://husinudinfurniture-debug.github.io/husinudin-furniture/produk.html"
+  />
+  <meta property="og:image" content="assets/images/hero.webp" />
 
   <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/produk.css">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/produk.css" />
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
-<header class="header" role="banner">
-  <div class="container header-inner">
-    <a href="index.html" class="logo">Husinudin Furniture</a>
+  <!-- ================= HEADER ================= -->
+  <header class="header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Husinudin Furniture</a>
 
-    <!-- Hamburger (Mobile) -->
-    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+      <button
+        class="nav-toggle"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
 
-    <nav class="nav" role="navigation" aria-label="Main Navigation">
-      <a href="index.html">Beranda</a>
-      <a href="produk.html" class="active">Produk</a>
-      <a href="custom.html">Custom</a>
-      <a href="tentang.html">Tentang</a>
-    </nav>
-  </div>
-</header>
-<!-- MAIN -->
-<main class="container">
+      <nav
+        class="nav"
+        role="navigation"
+        aria-label="Main Navigation"
+      >
+        <a href="index.html">Beranda</a>
+        <a href="produk.html" class="active">Produk</a>
+        <a href="custom.html">Custom</a>
+        <a href="tentang.html">Tentang</a>
+      </nav>
+    </div>
+  </header>
 
-  <section class="produk-hero">
-  <h1>Produk & Inspirasi Custom Furniture</h1>
-  <p>
-    Temukan model furniture yang pernah kami kerjakan dan konsultasikan
-    sesuai kebutuhan ruang Anda.
-  </p>
+  <!-- ================= MAIN ================= -->
+  <main class="container">
 
-  <div class="hero-badges">
-    <span>✔ Custom ukuran</span>
-    <span>✔ Custom warna</span>
-    <span>✔ Workshop sendiri</span>
-  </div>
+    <!-- ================= HERO SECTION ================= -->
+    <section class="produk-hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">Produk & Inspirasi Custom Furniture</h1>
 
-  <a
-    href="https://wa.me/6282113687057?text=Halo,%20saya%20ingin%20konsultasi%20furniture"
-    class="hero-wa-btn"
-    target="_blank"
+      <p class="hero-desc">
+        Temukan berbagai model furniture yang pernah kami kerjakan dan
+        konsultasikan sesuai kebutuhan ruang Anda.
+      </p>
+
+      <p class="hero-subtext">
+        Semua produk dapat disesuaikan ukuran, warna, bahan, dan desain.
+      </p>
+
+      <div class="hero-badges">
+        <span>✔ Custom ukuran</span>
+        <span>✔ Custom warna</span>
+        <span>✔ Workshop sendiri</span>
+      </div>
+
+      <a
+        href="https://wa.me/6282113687057?text=Halo,%20saya%20ingin%20konsultasi%20furniture"
+        class="hero-wa-btn"
+        target="_blank"
+        rel="noopener"
+      >
+        Konsultasi Gratis via WhatsApp
+      </a>
+    </section>
+
+    <!-- ================= SEARCH ================= -->
+    <section class="search-section" aria-label="Cari produk">
+      <input
+        id="searchInput"
+        class="search"
+        type="text"
+        placeholder="Cari produk furniture..."
+        aria-label="Cari produk"
+      />
+    </section>
+
+    <!-- ================= FILTER KATEGORI ================= -->
+    <section class="filter-section" aria-label="Filter kategori produk">
+      <div class="kategori">
+        <button class="active" data-kategori="semua">Semua</button>
+        <button data-kategori="sofa">Sofa</button>
+        <button data-kategori="tidur">Tempat Tidur</button>
+      </div>
+    </section>
+
+    <!-- ================= GRID PRODUK ================= -->
+    <section aria-labelledby="portfolio-title">
+      <h2 class="section-title" id="portfolio-title">
+        Portfolio Produk Kami
+      </h2>
+
+      <div
+        id="produk-list"
+        class="produk-grid"
+        aria-live="polite"
+      ></div>
+    </section>
+
+    <!-- ================= TRUST SECTION ================= -->
+    <section class="trust-section" aria-labelledby="trust-title">
+      <h2 id="trust-title">Kenapa Custom di Kami?</h2>
+
+      <div class="trust-list">
+        <div class="trust-item">✔ Workshop sendiri</div>
+        <div class="trust-item">✔ Dikerjakan tenaga berpengalaman</div>
+        <div class="trust-item">✔ Custom sesuai kebutuhan</div>
+        <div class="trust-item">✔ Konsultasi gratis</div>
+        <div class="trust-item">✔ Proses transparan</div>
+      </div>
+    </section>
+
+    <!-- ================= FINAL CTA ================= -->
+    <section class="final-cta" aria-labelledby="cta-title">
+      <h2 id="cta-title">Punya desain sendiri?</h2>
+
+      <p>
+        Kami siap membantu membuat furniture sesuai kebutuhan ruang
+        dan preferensi Anda.
+      </p>
+
+      <a
+        href="https://wa.me/6282113687057?text=Halo,%20saya%20ingin%20custom%20furniture%20sesuai%20desain%20sendiri"
+        class="hero-wa-btn"
+        target="_blank"
+        rel="noopener"
+      >
+        Konsultasi Sekarang
+      </a>
+    </section>
+
+  </main>
+
+  <!-- ================= MODAL DETAIL ================= -->
+  <div
+    id="modal"
+    class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
   >
-    Konsultasi Gratis via WhatsApp
-  </a>
-</section>
+    <div class="modal-content">
+      <button class="close" aria-label="Tutup">&times;</button>
 
-  <!-- SEARCH -->
-  <input
-    id="searchInput"
-    class="search"
-    type="text"
-    placeholder="Cari produk furniture..."
-    aria-label="Cari produk"
-  >
+      <img
+        id="modalImg"
+        alt="Detail produk furniture"
+      />
 
-<div class="kategori">
-  <button class="active" data-kategori="semua">Semua</button>
-  <button data-kategori="sofa">Sofa</button>
-  <button data-kategori="tidur">Tempat Tidur</button>
-</div>
+      <h3 id="modalNama"></h3>
+      <p id="modalKategori" class="muted"></p>
+      <p id="modalHarga" class="harga-modal"></p>
+      <p id="modalDesc"></p>
 
-  <!-- GRID PRODUK -->
-  <div id="produk-list" class="produk-grid" aria-live="polite"></div>
+      <!-- benefit conversion -->
+      <div class="modal-benefit">
+        <p>✔ Ukuran bebas</p>
+        <p>✔ Warna bebas</p>
+        <p>✔ Bahan bebas</p>
+        <p>✔ Estimasi 7–14 hari</p>
+      </div>
 
-</main>
-
-<!-- MODAL DETAIL PRODUK -->
-<div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
-  <div class="modal-content">
-    <button class="close" aria-label="Tutup">&times;</button>
-
-    <img id="modalImg" alt="Detail produk furniture">
-
-    <h3 id="modalNama"></h3>
-    <p id="modalKategori" class="muted"></p>
-    <p id="modalHarga" class="harga-modal"></p>
-    <p id="modalDesc"></p>
-
-    <a
-      id="modalWa"
-      class="btn-wa"
-      target="_blank"
-      rel="noopener"
-    >
-      Konsultasi via WhatsApp
-    </a>
+      <a
+        id="modalWa"
+        class="btn-wa"
+        target="_blank"
+        rel="noopener"
+      >
+        Konsultasi Model Ini via WhatsApp
+      </a>
+    </div>
   </div>
-</div>
 
-<!-- FOOTER (KONSISTEN – DIKUNCI) -->
-<footer class="footer" role="contentinfo">
-  <div class="container footer-inner">
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer-inner">
 
-    <div class="footer-brand">
-      <strong>Husinudin Furniture</strong>
-      <p>Furniture custom sesuai ruang & kebutuhan</p>
+      <div class="footer-brand">
+        <strong>Husinudin Furniture</strong>
+        <p>Furniture custom sesuai ruang & kebutuhan</p>
+      </div>
+
+      <div class="footer-contact">
+        <a href="mailto:husinudinfurniture@gmail.com">Email</a>
+        <a
+          href="https://instagram.com/husinudinfurniture"
+          target="_blank"
+          rel="noopener"
+        >
+          Instagram
+        </a>
+        <a
+          href="https://tiktok.com/@husinudinfurniture"
+          target="_blank"
+          rel="noopener"
+        >
+          TikTok
+        </a>
+        <a
+          href="https://wa.me/6282113687057"
+          target="_blank"
+          rel="noopener"
+        >
+          WhatsApp
+        </a>
+        <a
+          href="https://facebook.com/husinudinfurniture"
+          target="_blank"
+          rel="noopener"
+        >
+          Facebook
+        </a>
+      </div>
+
+      <div class="footer-copy">
+        <p>© 2026 Husinudin Furniture</p>
+      </div>
     </div>
+  </footer>
 
-    <div class="footer-contact">
-      <a href="mailto:husinudinfurniture@gmail.com">Email</a>
-      <a href="https://instagram.com/husinudinfurniture" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://tiktok.com/@husinudinfurniture" target="_blank" rel="noopener">TikTok</a>
-      <a href="https://wa.me/6282113687057" target="_blank" rel="noopener">WhatsApp</a>
-      <a href="https://facebook.com/husinudinfurniture" target="_blank" rel="noopener">Facebook</a>
-    </div>
-
-    <div class="footer-copy">
-      <p>© 2026 Husinudin Furniture</p>
-    </div>
-
-  </div>
-</footer>
-
-<!-- SCRIPT -->
-<script src="js/data.js" defer></script>
-<script src="js/main.js" defer></script>
+  <!-- ================= SCRIPT ================= -->
+  <script src="js/data.js" defer></script>
+  <script src="js/main.js" defer></script>
 
 </body>
 </html>
