@@ -1,10 +1,17 @@
 /* =========================================================
    MAIN.JS - FINAL UPGRADED VERSION
    Stable • Conversion Oriented • Harga Mulai Dari
+   
+   Execution Flow:
+   1. Header & Navigation (active state, theme, menu toggle, scroll)
+   2. Product Page Features (filtering, search, rendering)
+   3. Modal Interactions (open, close, keyboard, click-outside)
+   4. Initialization (on page load)
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-  /* ================= HEADER ACTIVE ================= */
+  /* ================= HEADER & NAVIGATION INITIALIZATION ================= */
+  // Sets 'active' class on current page navigation link
   const path = window.location.pathname;
 
   document.querySelectorAll(".nav a").forEach((link) => {
@@ -16,7 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* ================= THEME ================= */
+  /* ================= THEME INITIALIZATION ================= */
+  // Applies saved theme preference or system preference to document
   (() => {
     const storedTheme = localStorage.getItem("theme");
 
@@ -29,7 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })();
 
-  /* ================= NAV TOGGLE ================= */
+  /* ================= MOBILE NAVIGATION TOGGLE ================= */
+  // Controls open/close of mobile menu with aria-expanded attribute
   const navToggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".nav");
 
@@ -43,7 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ================= HEADER SCROLL ================= */
+  /* ================= HEADER SCROLL STATE ================= */
+  // Adds 'scrolled' class to header when page scrolls beyond 10px
   const header = document.querySelector(".header");
 
   if (header) {
@@ -52,11 +62,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ================= ELEMENTS ================= */
+  /* ================= DOM ELEMENTS - PRODUCT FEATURES ================= */
   const container = document.getElementById("produk-list");
   const searchInput = document.getElementById("searchInput");
   const kategoriBtns = document.querySelectorAll(".kategori button");
 
+  /* ================= DOM ELEMENTS - MODAL ================= */
   const modal = document.getElementById("modal");
   const modalImg = document.getElementById("modalImg");
   const modalNama = document.getElementById("modalNama");
@@ -66,21 +77,54 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalWa = document.getElementById("modalWa");
   const closeBtn = document.querySelector(".close");
 
+  /* ================= STATE ================= */
   let kategoriAktif = "semua";
 
-  /* ================= HELPERS ================= */
+  /* ================= HELPER FUNCTIONS ================= */
+  
+  /**
+   * Formats number as Indonesian Rupiah currency
+   * @param {number} number - Amount to format
+   * @returns {string} Formatted currency string
+   */
   function formatRupiah(number) {
     return `Rp ${Number(number).toLocaleString("id-ID")}`;
   }
 
-  function createWaMessage(product) {
+  /**
+   * Creates WhatsApp message with product consultation request
+   * @param {Object} product - Product data object
+   * @returns {string} URL-encoded message
+   */
+function createWaMessage(product) {
+  /* ID 15 = custom sofa */
+  if (product.id === 15) {
     return encodeURIComponent(
-      `Halo, saya tertarik dengan model ${product.nama}.
-Saya ingin konsultasi ukuran, warna, bahan, dan estimasi pengerjaan.`
+      `Halo, saya memiliki referensi desain sofa sendiri dan ingin konsultasi custom sofa sesuai kebutuhan. Saya akan mengirimkan gambar referensinya.`
     );
   }
 
-  /* ================= CREATE CARD ================= */
+  /* ID 23 = custom tempat tidur */
+  if (product.id === 23) {
+    return encodeURIComponent(
+      `Halo, saya memiliki referensi desain tempat tidur sendiri dan ingin konsultasi custom sesuai kebutuhan. Saya akan mengirimkan gambar referensinya.`
+    );
+  }
+
+  /* default produk lainnya */
+  return encodeURIComponent(
+    `Halo, saya tertarik dengan model ${product.nama}.
+Saya ingin konsultasi ukuran, warna, bahan, dan estimasi pengerjaan.`
+  );
+  }
+
+  /* ================= PRODUCT CARD CREATION ================= */
+  
+  /**
+   * Creates product card DOM element with event listener
+   * @param {Object} product - Product data from produkData array
+   * @returns {HTMLElement} Card element with click handler
+   */
   function createProductCard(product) {
     const card = document.createElement("div");
     card.className = "produk-card";
@@ -106,7 +150,12 @@ Saya ingin konsultasi ukuran, warna, bahan, dan estimasi pengerjaan.`
     return card;
   }
 
-  /* ================= FILTER PRODUCTS ================= */
+  /* ================= PRODUCT FILTERING ================= */
+  
+  /**
+   * Filters products by search keyword and category
+   * @returns {Array} Filtered products matching current criteria
+   */
   function getFilteredProducts() {
     const keyword = searchInput?.value.toLowerCase().trim() || "";
 
@@ -123,7 +172,9 @@ Saya ingin konsultasi ukuran, warna, bahan, dan estimasi pengerjaan.`
     });
   }
 
-  /* ================= EMPTY STATE ================= */
+  /**
+   * Renders empty state message when no products match filter
+   */
   function renderEmptyState() {
     container.innerHTML = `
       <div class="empty-state">
@@ -132,7 +183,9 @@ Saya ingin konsultasi ukuran, warna, bahan, dan estimasi pengerjaan.`
     `;
   }
 
-  /* ================= RENDER PRODUCTS ================= */
+  /**
+   * Renders filtered products to container using DocumentFragment
+   */
   function renderProduk() {
     if (!container) return;
 
@@ -154,31 +207,14 @@ Saya ingin konsultasi ukuran, warna, bahan, dan estimasi pengerjaan.`
     container.appendChild(fragment);
   }
 
-  /* ================= FILTER BUTTONS ================= */
-  kategoriBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      kategoriBtns.forEach((b) =>
-        b.classList.remove("active")
-      );
 
-      btn.classList.add("active");
-      kategoriAktif = btn.dataset.kategori.toLowerCase();
 
-      renderProduk();
-
-      container?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    });
-  });
-
-  /* ================= SEARCH ================= */
-  if (searchInput) {
-    searchInput.addEventListener("input", renderProduk);
-  }
-
-  /* ================= OPEN MODAL ================= */
+  /* ================= MODAL OPENING ================= */
+  
+  /**
+   * Opens product detail modal with product information
+   * @param {Object} product - Product data to display
+   */
   function bukaModal(product) {
     if (!modal) return;
 
@@ -204,7 +240,11 @@ Saya ingin konsultasi ukuran, warna, bahan, dan estimasi pengerjaan.`
     document.body.classList.add("modal-open");
   }
 
-  /* ================= CLOSE MODAL ================= */
+  /* ================= MODAL CLOSING ================= */
+  
+  /**
+   * Closes product detail modal
+   */
   function tutupModal() {
     if (!modal) return;
 
@@ -214,10 +254,40 @@ Saya ingin konsultasi ukuran, warna, bahan, dan estimasi pengerjaan.`
     document.body.classList.remove("modal-open");
   }
 
+  /* ================= EVENT LISTENERS ================= */
+  
+  /* ----- PRODUCT FILTER CONTROLS ----- */
+  // Category button filter handler
+  kategoriBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      kategoriBtns.forEach((b) =>
+        b.classList.remove("active")
+      );
+
+      btn.classList.add("active");
+      kategoriAktif = btn.dataset.kategori.toLowerCase();
+
+      renderProduk();
+
+      container?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  });
+
+  // Search input filter handler
+  if (searchInput) {
+    searchInput.addEventListener("input", renderProduk);
+  }
+
+  /* ----- MODAL INTERACTIONS ----- */
+  // Close button click handler
   if (closeBtn) {
     closeBtn.addEventListener("click", tutupModal);
   }
 
+  // Click outside modal to close
   document.addEventListener("click", (e) => {
     if (
       modal &&
@@ -228,6 +298,7 @@ Saya ingin konsultasi ukuran, warna, bahan, dan estimasi pengerjaan.`
     }
   });
 
+  // Escape key to close modal
   document.addEventListener("keydown", (e) => {
     if (
       e.key === "Escape" &&
@@ -238,7 +309,8 @@ Saya ingin konsultasi ukuran, warna, bahan, dan estimasi pengerjaan.`
     }
   });
 
-  /* ================= INIT ================= */
+  /* ================= INITIALIZATION ================= */
+  // Render initial product list on page load
   if (container && typeof produkData !== "undefined") {
     renderProduk();
   }
