@@ -1,10 +1,22 @@
 /* =========================================================
    components.css - Reusable UI components
    Cleaned & Refactored (NO visual changes)
+   
+   Section Organization:
+   - Button base styles (primary, WhatsApp)
+   - Navigation toggle button
+   - Card types (generic, product, mobile grid)
+   - Product grid layout
+   - Badge components
+   - Modal dialog & interactions
+   - Form components & inputs
+   - Hero icons & utilities
+   - Dark mode theme overrides
+   - Responsive breakpoints
    ========================================================= */
 
 
-/* ================= BASE BUTTON ================= */
+/* ================= BUTTON BASE STYLES ================= */
 
 .btn-primary,
 .btn-wa {
@@ -280,11 +292,11 @@
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(3px);
+  background: rgba(0, 0, 0, 0.65);
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-lg);
+  padding: 16px;
+  scroll-behavior: smooth;
 }
 
 .modal.is-open {
@@ -302,13 +314,16 @@ body.modal-open {
 
 .modal-content {
   position: relative;
-  width: 100%;
-  max-width: min(92vw, 540px);
-  padding: clamp(1rem, 2.5vw, var(--spacing-lg));
+  width: min(100%, 420px);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 20px;
   background: var(--bg-light);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-lg);
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
   animation: modalFade var(--transition);
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 
 .modal-content img {
@@ -325,9 +340,11 @@ body.modal-open {
 }
 
 .close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+  position: sticky;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  margin-left: auto;
   width: 44px;
   height: 44px;
   background: none;
@@ -338,10 +355,35 @@ body.modal-open {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: color 0.2s ease;
 }
 
 .close:hover {
   color: var(--primary);
+}
+
+.harga-modal {
+  font-weight: 700;
+  margin: 0.8rem 0;
+  color: var(--primary);
+}
+
+.modal-benefit {
+  margin: 1rem 0;
+  display: grid;
+  gap: 6px;
+  color: var(--text-soft);
+  font-size: 0.9rem;
+}
+
+/* Modal button context */
+.modal-content .btn-wa {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px 16px;
+  box-sizing: border-box;
 }
 
 
@@ -440,4 +482,21 @@ body.modal-open {
 
 :root[data-theme="light"] .hero-icon img {
   filter: none;
+}
+
+
+/* ================= RESPONSIVE MODAL ================= */
+
+@media (min-width: var(--bp-md)) {
+  /* Modal Tablet */
+  .modal-content {
+    width: min(100%, 500px);
+  }
+}
+
+@media (min-width: var(--bp-lg)) {
+  /* Modal Desktop */
+  .modal-content {
+    width: min(100%, 600px);
+  }
 }
