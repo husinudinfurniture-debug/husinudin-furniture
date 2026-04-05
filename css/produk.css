@@ -1,5 +1,13 @@
 /* =========================================================
    produk.css - FINAL CONVERSION ORIENTED VERSION
+   
+   Section Flow:
+   - Hero Section (introduction, badges, CTA)
+   - Search & Filtering (search bar, category buttons)
+   - Product Grid (product card display)
+   - Trust Section (why choose us)
+   - Final CTA (conversion)
+   - Responsive Breakpoints
    ========================================================= */
 
 
@@ -50,8 +58,8 @@
   display: inline-block;
   padding: 12px 20px;
   border-radius: 999px;
-  background: #25D366;
-  color: #fff;
+  background: var(--whatsapp);
+  color: var(--text-light);
   text-decoration: none;
   font-weight: 600;
   transition: transform 0.2s ease;
@@ -233,109 +241,9 @@
 }
 
 
-/* ================= MODAL ================= */
-
-.modal {
-  position: fixed;
-  inset: 0;
-  display: none;
-  background: rgba(0, 0, 0, 0.65);
-  z-index: 999;
-  padding: 16px;
-  align-items: center;
-  justify-content: center;
-  scroll-behavior: smooth;
-}
-
-.modal.is-open {
-  display: flex;
-}
-
-body.modal-open {
-  overflow: hidden;
-}
-
-.modal-content {
-  width: min(100%, 420px);
-  max-height: 90vh;
-  overflow-y: auto;
-  background: #fff;
-  border-radius: 18px;
-  padding: 20px;
-  position: relative;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-}
-
-.modal-content img {
-  width: 100%;
-  border-radius: 14px;
-  margin-bottom: 1rem;
-}
-
-.close {
-  position: sticky;
-  top: 0;
-  right: 0;
-  z-index: 10;
-  margin-left: auto;
-  display: flex;
-  width: 44px;
-  height: 44px;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  background: none;
-  font-size: 1.6rem;
-  cursor: pointer;
-  color: var(--text-soft);
-  transition: color 0.2s ease;
-}
-
-.close:hover {
-  color: var(--primary);
-}
-
-.harga-modal {
-  font-weight: 700;
-  margin: 0.8rem 0;
-  color: var(--primary);
-}
-
-.modal-benefit {
-  margin: 1rem 0;
-  display: grid;
-  gap: 6px;
-  color: var(--text-soft);
-  font-size: 0.9rem;
-}
-
-.btn-wa {
-  position: sticky;
-  bottom: 0;
-  display: block;
-  text-align: center;
-  padding: 12px 16px;
-  margin-top: 20px;
-  border-radius: 999px;
-  background: #25D366;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  width: 100%;
-  box-sizing: border-box;
-  transition: transform 0.2s ease;
-}
-
-.btn-wa:hover {
-  transform: translateY(-2px);
-}
-
-
 /* ================= RESPONSIVE ================= */
 
-@media (min-width: 768px) {
+@media (min-width: var(--bp-md)) {
   .produk-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
@@ -344,20 +252,10 @@ body.modal-open {
   .produk-card img {
     height: 220px;
   }
-
-  /* Modal Tablet */
-  .modal-content {
-    width: min(100%, 500px);
-  }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: var(--bp-lg)) {
   .produk-grid {
     grid-template-columns: repeat(4, 1fr);
-  }
-
-  /* Modal Desktop */
-  .modal-content {
-    width: min(100%, 600px);
   }
 }
