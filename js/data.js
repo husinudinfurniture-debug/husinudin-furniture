@@ -1,6 +1,16 @@
 /* =========================================================
    DATA.JS - FINAL VERSION
    Sinkron dengan main.js terbaru
+   
+   Product Data Structure:
+   - Each product object contains: id, slug, nama, kategori, img, harga_mulai, deskripsi
+   - id: Unique identifier 
+   - slug: URL-friendly product identifier
+   - nama: Product display name with style descriptor
+   - kategori: Category for filtering (sofa, tidur)
+   - img: Asset path to product image
+   - harga_mulai: Starting price in Indonesian Rupiah
+   - deskripsi: Product description for modal display
    ========================================================= */
 
 const produkData = [
