@@ -11,7 +11,7 @@
   align-items: center;
   width: 100%;
   min-height: 65vh;
-  color: #fff;
+  color: var(--text-light);
   overflow: hidden;
 }
 
@@ -54,20 +54,20 @@
   line-height: 1.6;
   margin-bottom: 2rem;
   opacity: 0.9;
-  color: #ffffff;
+  color: var(--text-light);
 }
 
 
 /* ================= HERO RESPONSIVE ================= */
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .hero { min-height: 55vh; }
   .hero-overlay { padding: 3rem 1.2rem; }
   .hero-content { max-width: 100%; }
   .hero h1 { font-size: 1.8rem; }
 }
 
-@media (min-width: 769px) {
+@media (min-width: var(--bp-md)) {
   .hero { min-height: 80vh; }
 
   .hero-overlay {
@@ -92,7 +92,7 @@
   .hero p { font-size: 1.05rem; }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: var(--bp-xl)) {
   .hero { min-height: 90vh; }
   .hero-overlay { padding-left: 8%; }
   .hero-content { max-width: 700px; }
