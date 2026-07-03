@@ -1,17 +1,16 @@
 /* =========================================================
-   DATA.JS - FINAL VERSION
-   Sinkron dengan main.js terbaru
-   
-   Product Data Structure:
-   - Each product object contains: id, slug, nama, kategori, img, harga_mulai, deskripsi
-   - id: Unique identifier 
-   - slug: URL-friendly product identifier
-   - nama: Product display name with style descriptor
-   - kategori: Category for filtering (sofa, tidur)
-   - img: Asset path to product image
-   - harga_mulai: Starting price in Indonesian Rupiah
-   - deskripsi: Product description for modal display
-   ========================================================= */
+  DATA.JS 
+  
+  Product Data Structure:
+  - Each product object contains: id, slug, nama, kategori, img, harga_mulai, deskripsi
+  - id: Unique identifier 
+  - slug: URL-friendly product identifier
+  - nama: Product display name with style descriptor
+  - kategori: Category for filtering (sofa, tidur)
+  - img: Asset path to product image
+  - harga_mulai: Starting price in Indonesian Rupiah
+  - deskripsi: Product description for modal display
+  ========================================================= */
 
 const produkData = [
   /* ================= SOFA ================= */
@@ -21,7 +20,7 @@ const produkData = [
     nama: "Sofa Manohara Gold – Luxury Chesterfield",
     kategori: "sofa",
     img: "assets/images/sofa01.png",
-    harga_mulai: 7500000,
+    harga_mulai: 5000000,
     deskripsi:
       "Sofa set luxury dengan desain chesterfield tufted dan aksen stainless gold yang memberikan kesan elegan pada ruang tamu. Dibuat menggunakan rangka kayu solid dan busa high density untuk kenyamanan maksimal."
   },
@@ -31,7 +30,7 @@ const produkData = [
     nama: "Sofa Verona Classic – Royal Tufted",
     kategori: "sofa",
     img: "assets/images/sofa02.png",
-    harga_mulai: 7500000,
+    harga_mulai: 5000000,
     deskripsi:
       "Sofa set bergaya klasik Eropa dengan desain tufted elegan dan detail ukiran dekoratif pada armrest. Cocok untuk ruang tamu luxury klasik."
   },
@@ -41,7 +40,7 @@ const produkData = [
     nama: "Sofa Aurelia – Modern Glam",
     kategori: "sofa",
     img: "assets/images/sofa03.png",
-    harga_mulai: 8000000,
+    harga_mulai: 5000000,
     deskripsi:
       "Sofa modern glam dengan desain sandaran melengkung elegan, velvet premium, dan kaki metal finishing gold."
   },
@@ -61,7 +60,7 @@ const produkData = [
     nama: "Sofa Osaka – Modern Lounge",
     kategori: "sofa",
     img: "assets/images/sofa05.png",
-    harga_mulai: 6000000,
+    harga_mulai: 5000000,
     deskripsi:
       "Sofa modern minimalis dengan sandaran kepala adjustable dan kenyamanan maksimal."
   },
@@ -71,7 +70,7 @@ const produkData = [
     nama: "Sofa Cloud Luna – Modern Curved",
     kategori: "sofa",
     img: "assets/images/sofa06.png",
-    harga_mulai: 8000000,
+    harga_mulai: 5000000,
     deskripsi:
       "Sofa modern curved dengan desain aesthetic dan nyaman untuk interior modern premium."
   },
@@ -151,7 +150,7 @@ const produkData = [
     nama: "Sofa Bubble Soft – Contemporary Aesthetic",
     kategori: "sofa",
     img: "assets/images/sofa14.png",
-    harga_mulai: 7000000,
+    harga_mulai: 5000000,
     deskripsi:
       "Bubble sofa aesthetic dengan desain rounded dan busa premium."
   },
@@ -161,7 +160,7 @@ const produkData = [
     nama: "Sofa Custom Sesuai Desain Anda",
     kategori: "sofa",
     img: "assets/images/sofa15.png",
-    harga_mulai: 4000000,
+    harga_mulai: 3500000,
     deskripsi:
     "Punya referensi sofa dari Pinterest, Instagram, TikTok, atau desain sendiri? Kami siap membantu membuat sofa custom sesuai ukuran, warna, bahan, dan kebutuhan ruang Anda. Cocok untuk ruang tamu, ruang keluarga, maupun area komersial dengan desain sesuai keinginan Anda."
   },
@@ -183,7 +182,7 @@ const produkData = [
     nama: "Bed Milano – Luxury Panel",
     kategori: "tidur",
     img: "assets/images/bed02.png",
-    harga_mulai: 8000000,
+    harga_mulai: 5000000,
     deskripsi:
       "Tempat tidur premium dengan headboard tinggi dan desain luxury modern."
   },
@@ -193,18 +192,18 @@ const produkData = [
     nama: "Bed Cloud Dream – Upholstered Soft",
     kategori: "tidur",
     img: "assets/images/bed03.png",
-    harga_mulai: 6000000,
+    harga_mulai: 5000000,
     deskripsi:
       "Tempat tidur upholstered dengan headboard empuk dan desain aesthetic."
   },
   {
-      id: 23,
-  slug: "tempat-tidur-custom-sesuai-desain-anda",
-  nama: "Tempat Tidur Custom Sesuai Desain Anda",
-  kategori: "tidur",
-  img: "assets/images/bed04.png",
-  harga_mulai: 5000000,
-  deskripsi:
-    "Kami melayani pembuatan tempat tidur custom sesuai desain dan ukuran yang Anda inginkan. Bisa menggunakan referensi dari Pinterest, Instagram, maupun desain pribadi, mulai dari model minimalis, japandi, hingga luxury modern."
+    id: 23,
+    slug: "tempat-tidur-custom-sesuai-desain-anda",
+    nama: "Tempat Tidur Custom Sesuai Desain Anda",
+    kategori: "tidur",
+    img: "assets/images/bed04.png",
+    harga_mulai: 3500000,
+    deskripsi:
+      "Kami melayani pembuatan tempat tidur custom sesuai desain dan ukuran yang Anda inginkan. Bisa menggunakan referensi dari Pinterest, Instagram, maupun desain pribadi, mulai dari model minimalis, japandi, hingga luxury modern."
   }
 ];
