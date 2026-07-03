@@ -1,502 +1,244 @@
-/* =========================================================
-   components.css - Reusable UI components
-   Cleaned & Refactored (NO visual changes)
-   
-   Section Organization:
-   - Button base styles (primary, WhatsApp)
-   - Navigation toggle button
-   - Card types (generic, product, mobile grid)
-   - Product grid layout
-   - Badge components
-   - Modal dialog & interactions
-   - Form components & inputs
-   - Hero icons & utilities
-   - Dark mode theme overrides
-   - Responsive breakpoints
-   ========================================================= */
+/*================  components.css ===================*/
 
-
-/* ================= BUTTON BASE STYLES ================= */
-
-.btn-primary,
-.btn-wa {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  min-height: 44px;
-  border: none;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  cursor: pointer;
-  transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition), background var(--transition);
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;
+  padding: 0.7rem 1.5rem; font-size: 0.9rem; font-weight: 700;
+  border-radius: var(--r-full); cursor: pointer;
+  transition: transform var(--t-mid), box-shadow var(--t-mid), background var(--t-mid);
+  min-height: 46px; white-space: nowrap; border: none; line-height: 1;
 }
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+.btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
+.btn-primary { background: var(--brown-mid); color: #FFFFFF; box-shadow: 0 3px 12px rgba(0,0,0,0.2); }
+.btn-primary:hover { background: var(--brown-deep); color: #FFFFFF; }
 
-/* ================= PRIMARY BUTTON ================= */
+.btn-outline { background: transparent; color: var(--brown-mid); border: 1.5px solid var(--brown-mid); }
+.btn-outline:hover { background: var(--brown-mid); color: #FFFFFF; box-shadow: var(--shadow-md); }
 
-.btn-primary {
-  padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, var(--primary), var(--primary-soft));
-  color: var(--text-light);
-  font-size: 0.95rem;
-  font-weight: 600;
-}
+.btn-wa { background: var(--whatsapp); color: #FFFFFF; box-shadow: 0 3px 12px rgba(37,211,102,0.28); }
+.btn-wa:hover { background: var(--whatsapp-dark); color: #FFFFFF; box-shadow: 0 6px 20px rgba(37,211,102,0.36); }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  opacity: 0.98;
-}
+/* btn-white: ALWAYS light, regardless of theme — used on top of dark hero photos.
+   Hardcoded values, NOT theme variables, so it never goes dark in dark-mode. */
+.btn-white { background: #FFFFFF; color: #2A1B10; box-shadow: 0 3px 14px rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.6); }
+.btn-white:hover { background: #F5F0E8; color: #2A1B10; box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
 
-.btn-primary:active {
-  transform: translateY(0);
-  box-shadow: var(--shadow-sm);
-}
+.btn--lg { padding: 0.85rem 1.9rem; font-size: 0.95rem; min-height: 52px; }
+.btn--sm { padding: 0.45rem 1rem; font-size: 0.82rem; min-height: 34px; }
 
-.btn-primary:focus-visible {
-  outline: 3px solid var(--primary-soft);
-  outline-offset: 2px;
-}
-
-.btn-primary:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-
-/* ================= WHATSAPP BUTTON ================= */
-
-.btn-wa {
-  min-width: 44px;
-  padding: 0.6rem 1rem;
-  background: var(--whatsapp);
-  color: var(--text-light);
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.btn-wa:hover {
-  background: var(--whatsapp-dark);
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: var(--shadow-lg);
-}
-
-.btn-wa:active {
-  transform: translateY(0) scale(1);
-}
-
-.btn-wa:focus-visible {
-  outline: 3px solid rgba(0, 0, 0, 0.12);
-  outline-offset: 3px;
-}
-
-
-/* ================= NAV TOGGLE ================= */
-
-.nav-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  background: transparent;
-  border: 2px solid var(--text-dark);
-  border-radius: var(--radius);
-  color: var(--text-dark);
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: background var(--transition), border-color var(--transition), color var(--transition);
-}
-
-.nav-toggle:hover {
-  background: var(--bg-soft);
-  color: var(--primary);
-  border-color: var(--primary);
-}
-
-.nav-toggle:focus-visible {
-  outline: 3px solid var(--primary);
-  outline-offset: 2px;
-}
-
-.nav-toggle.active {
-  background: var(--primary);
-  border-color: var(--primary);
-  color: var(--text-light);
-}
-
-
-/* ================= BASE CARD ================= */
-
-.card,
-.product-card,
+/* ================= PRODUCT CARD ================= */
 .produk-card {
-  background: var(--bg-light);
-  border-radius: var(--radius);
-  overflow: hidden;
-  transition: transform var(--transition), box-shadow var(--transition);
+  background: var(--surface);
+  border-radius: var(--r-lg); overflow: hidden; cursor: pointer;
+  border: 1px solid var(--border-soft);
+  transition: transform var(--t-mid), box-shadow var(--t-mid);
+  display: flex; flex-direction: column;
 }
-
-
-/* ================= CARD ================= */
-
-.card {
-  box-shadow: var(--shadow-sm);
+.produk-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+.produk-card:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.produk-card__img-wrap { position: relative; overflow: hidden; aspect-ratio: 4/3; }
+.produk-card__img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.45s ease; }
+.produk-card:hover .produk-card__img-wrap img { transform: scale(1.04); }
+.produk-card__badge {
+  position: absolute; top: 8px; left: 8px;
+  padding: 3px 9px; background: var(--brown-mid); color: #FFFFFF;
+  font-size: 0.68rem; font-weight: 700; border-radius: var(--r-full);
+  text-transform: uppercase; letter-spacing: 0.05em;
 }
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-}
-
-
-/* ================= PRODUCT CARD (DESKTOP) ================= */
-
-.product-card {
-  display: flex;
-  flex-direction: column;
-  min-height: 340px;
-  border-radius: calc(var(--radius) * 1.1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-}
-
-.product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.07);
-}
-
-.product-card img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  display: block;
-  border-radius: calc(var(--radius) * 0.85);
-}
-
-.product-card .content {
-  padding: var(--spacing-lg);
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.product-card h3 {
-  font-size: 1.05rem;
-  margin-bottom: 0.5rem;
-  font-weight: 700;
-}
-
-.product-card .harga {
-  font-weight: 700;
-  color: var(--primary);
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.product-card .kategori {
-  font-size: 0.8rem;
-  color: var(--text-soft);
-  margin-top: auto;
-}
-
-
-/* ================= PRODUCT CARD (MOBILE GRID) ================= */
-
-.produk-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 8px;
-  border-radius: 12px;
-  color: var(--text-dark);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.produk-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
-}
-
-.produk-card img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 6px;
-  display: block;
-}
-
+.produk-card__body { padding: 0.85rem 1rem 1rem; display: flex; flex-direction: column; gap: 4px; flex: 1; }
 .produk-card h4 {
-  font-size: 0.78rem;
-  font-weight: 600;
-  line-height: 1.3;
-  margin-bottom: 4px;
-  display: -webkit-box;
+  font-size: 0.88rem; font-weight: 600; line-height: 1.35;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
   line-clamp: 2;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  color: var(--text);
 }
+.produk-card .harga { font-size: 0.82rem; font-weight: 700; color: var(--brown-mid); margin-top: 2px; }
+.produk-card .konsultasi-tag { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
 
-.produk-card .harga {
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--primary);
+/* ================= STEP CARD ================= */
+.step-card {
+  background: var(--surface);
+  border-radius: var(--r-lg); padding: var(--sp-lg);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-xs);
+  transition: transform var(--t-mid), box-shadow var(--t-mid);
 }
-
-.produk-card p {
-  font-size: 0.65rem;
-  opacity: 0.75;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  line-clamp: 1;
-  -webkit-line-clamp: 1;
+.step-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.step-card__num-wrap {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px; border-radius: var(--r-md);
+  background: var(--bg-alt);
+  margin-bottom: var(--sp-md);
 }
+.step-card__num { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--brown-mid); line-height: 1; }
+.step-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: var(--sp-xs); color: var(--text); }
+.step-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; }
 
-/* ================= PRODUCT GRID ================= */
-
-.produk-grid {
-  display: grid;
-  width: 100%;
-  gap: 12px;
-  grid-template-columns: repeat(3, 1fr);
-  /* Mobile-first: 3 columns fixed for small screens */
+/* Step card variant for use INSIDE dark sections */
+.section--dark .step-card {
+  background: var(--dark-card-bg);
+  border-color: var(--dark-card-border);
 }
+.section--dark .step-card__num-wrap { background: var(--dark-section-bg); border: 1px solid var(--dark-card-border); }
+.section--dark .step-card__num { color: var(--gold); }
+.section--dark .step-card h4 { color: var(--dark-section-text); }
+.section--dark .step-card p  { color: var(--dark-section-muted); }
 
+/* ================= FEATURE / WHY CARD (used on dark bg in screenshots) ================= */
+.feature-card, .why-card {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg); padding: var(--sp-lg);
+  box-shadow: var(--shadow-xs);
+  transition: transform var(--t-mid), box-shadow var(--t-mid);
+}
+.feature-card:hover, .why-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+/* CRITICAL FIX: when these cards sit inside a .section--dark,
+   give them a visibly LIGHTER card surface + solid light text */
+.section--dark .feature-card,
+.section--dark .why-card {
+  background: var(--dark-card-bg);
+  border-color: var(--dark-card-border);
+}
+.section--dark .feature-card h4,
+.section--dark .why-card h4 { color: var(--dark-section-text); }
+.section--dark .feature-card p,
+.section--dark .why-card p { color: var(--dark-section-muted); }
+
+.feature-card__icon, .why-icon {
+  width: 44px; height: 44px; border-radius: var(--r-md);
+  background: var(--bg-alt);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: var(--sp-md); flex-shrink: 0; font-size: 1.2rem;
+}
+.section--dark .feature-card__icon,
+.section--dark .why-icon { background: var(--dark-section-bg); border: 1px solid var(--dark-card-border); }
+.feature-card__icon img { width: 22px; height: 22px; object-fit: contain; }
+.feature-card h4, .why-card h4 { font-size: 0.92rem; font-weight: 700; margin-bottom: var(--sp-xs); color: var(--text); }
+.feature-card p, .why-card p { font-size: 0.86rem; color: var(--text-muted); line-height: 1.6; }
+.why-card { display: flex; align-items: flex-start; gap: var(--sp-md); }
+
+/* ================= TESTIMONIAL CARD ================= */
+.testi-card {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg); padding: var(--sp-lg);
+  box-shadow: var(--shadow-xs);
+  display: flex; flex-direction: column; gap: var(--sp-md);
+}
+.testi-stars { display: flex; gap: 2px; color: var(--gold); font-size: 0.85rem; }
+.testi-text { font-size: 0.9rem; color: var(--text-soft); line-height: 1.65; font-style: italic; flex: 1; }
+.testi-author { display: flex; align-items: center; gap: var(--sp-sm); }
+.testi-avatar {
+  width: 38px; height: 38px; border-radius: var(--r-full);
+  background: var(--bg-alt);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: var(--brown-mid); font-size: 0.8rem; flex-shrink: 0;
+}
+.testi-name { font-weight: 600; font-size: 0.875rem; color: var(--text); }
+.testi-loc { font-size: 0.775rem; color: var(--text-muted); }
 
 /* ================= BADGE ================= */
-
 .badge {
-  display: inline-block;
-  padding: 0.35rem 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  border-radius: 999px;
-  background: var(--bg-soft);
-  color: var(--text-dark);
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px 11px; border-radius: var(--r-full);
+  font-size: 0.77rem; font-weight: 600;
 }
+.badge--soft { background: var(--bg-alt); color: var(--text-soft); border: 1px solid var(--border); }
+.badge--primary { background: var(--brown-mid); color: #FFFFFF; }
+.badge--green { background: rgba(37,211,102,0.15); color: var(--whatsapp-text); }
 
-.badge--primary {
-  background: var(--primary);
-  color: var(--text-light);
+/* Badge variant for use on dark hero/section */
+.section--dark .badge--soft,
+.hero .badge--soft {
+  background: rgba(255,255,255,0.10);
+  color: var(--hero-text);
+  border: 1px solid rgba(255,255,255,0.25);
 }
-
 
 /* ================= MODAL ================= */
-
 .modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  background: rgba(0, 0, 0, 0.65);
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  scroll-behavior: smooth;
+  display: none; position: fixed; inset: 0; z-index: 2000;
+  background: rgba(8,5,3,0.72);
+  align-items: flex-end; justify-content: center; padding: 0;
 }
+@media (min-width: 640px) { .modal { align-items: center; padding: 20px; } }
+.modal.is-open { display: flex; }
+body.modal-open { overflow: hidden; }
 
-.modal.is-open {
-  display: flex;
-}
-
-body.modal-open {
-  overflow: hidden;
-}
-
-@keyframes modalFade {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+@keyframes slideUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 
 .modal-content {
-  position: relative;
-  width: min(100%, 420px);
-  max-height: 90vh;
-  overflow-y: auto;
-  padding: 20px;
-  background: var(--bg-light);
-  border-radius: 18px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-  animation: modalFade var(--transition);
+  position: relative; width: 100%; max-width: 420px; max-height: 92vh; overflow-y: auto;
+  background: var(--surface);
+  border-radius: var(--r-xl) var(--r-xl) 0 0;
+  animation: slideUp 0.28s ease;
   -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
 }
-
-.modal-content img {
-  width: 100%;
-  border-radius: var(--radius);
-  margin-bottom: var(--spacing-md);
+@media (min-width: 640px) { .modal-content { border-radius: var(--r-xl); } }
+.modal-img-wrap { position: relative; aspect-ratio: 16/10; overflow: hidden; border-radius: var(--r-xl) var(--r-xl) 0 0; }
+.modal-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.modal-close {
+  position: absolute; top: 10px; right: 10px;
+  width: 34px; height: 34px; border-radius: var(--r-full);
+  background: rgba(0,0,0,0.5); color: #FFFFFF;
+  font-size: 1rem; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 5; transition: background var(--t-fast); border: none;
 }
-
-.modal-actions {
-  display: flex;
-  gap: var(--spacing-sm);
-  flex-wrap: wrap;
-  margin-top: var(--spacing-md);
+.modal-close:hover { background: rgba(0,0,0,0.7); }
+.modal-body { padding: var(--sp-lg); }
+.modal-kategori { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-text); margin-bottom: 5px; }
+.modal-nama { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: 5px; line-height: 1.25; }
+.modal-harga { font-size: 1rem; font-weight: 700; color: var(--brown-mid); margin-bottom: var(--sp-sm); }
+.modal-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.65; margin-bottom: var(--sp-md); }
+.modal-benefits {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+  margin-bottom: var(--sp-lg); padding: var(--sp-md);
+  background: var(--bg); border-radius: var(--r-md);
 }
+.modal-benefit-item { display: flex; align-items: center; gap: 5px; font-size: 0.8rem; color: var(--text-soft); font-weight: 500; }
+.modal-benefit-item::before { content: "✓"; color: var(--whatsapp-dark); font-weight: 700; }
+.modal-cta { width: 100%; }
 
-.close {
-  position: sticky;
-  top: 0;
-  right: 0;
-  z-index: 10;
-  margin-left: auto;
-  width: 44px;
-  height: 44px;
-  background: none;
-  border: none;
-  font-size: 1.4rem;
+/* ================= SEARCH ================= */
+.search-wrap { position: relative; max-width: 440px; margin: 0 auto; }
+.search-wrap svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); width: 17px; height: 17px; color: var(--text-muted); pointer-events: none; }
+.search {
+  display: block; width: 100%; padding: 0.75rem 1rem 0.75rem 2.6rem;
+  font-size: 0.9rem; color: var(--text);
+  background: var(--surface);
+  border: 1.5px solid var(--border); border-radius: var(--r-full);
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+.search::placeholder { color: var(--text-muted); }
+.search:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,147,10,0.15); }
+
+/* ================= FILTER BUTTONS ================= */
+.filter-wrap { display: flex; justify-content: center; flex-wrap: wrap; gap: 7px; }
+.filter-btn {
+  padding: 6px 16px; min-height: 34px; font-size: 0.84rem; font-weight: 500;
   color: var(--text-soft);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.2s ease;
+  background: var(--surface);
+  border: 1.5px solid var(--border); border-radius: var(--r-full);
+  cursor: pointer; transition: all var(--t-fast);
 }
+.filter-btn:hover { background: var(--bg-alt); color: var(--text); }
+.filter-btn.active { background: var(--brown-mid); color: #FFFFFF; border-color: var(--brown-mid); }
 
-.close:hover {
-  color: var(--primary);
-}
+/* ================= EMPTY STATE ================= */
+.empty-state { grid-column: 1/-1; text-align: center; padding: var(--sp-3xl) var(--sp-lg); color: var(--text-muted); }
+.empty-state p:first-child { font-size: 1rem; font-weight: 500; color: var(--text-soft); }
+.empty-state p + p { font-size: 0.875rem; margin-top: var(--sp-xs); }
 
-.harga-modal {
-  font-weight: 700;
-  margin: 0.8rem 0;
-  color: var(--primary);
-}
+/* ================= GRIDS ================= */
+.grid-2, .grid-3 { display: grid; gap: var(--sp-lg); grid-template-columns: 1fr; }
+.grid-4 { display: grid; gap: var(--sp-md); grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 640px) { .grid-2, .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } .grid-4 { grid-template-columns: repeat(4, 1fr); } }
 
-.modal-benefit {
-  margin: 1rem 0;
-  display: grid;
-  gap: 6px;
-  color: var(--text-soft);
-  font-size: 0.9rem;
-}
-
-/* Modal button context */
-.modal-content .btn-wa {
-  position: sticky;
-  bottom: 0;
-  width: 100%;
-  margin-top: 20px;
-  padding: 12px 16px;
-  box-sizing: border-box;
-}
-
-
-/* ================= FORMS ================= */
-
-.input-field {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-md);
-}
-
-.input-field__label {
-  font-size: 0.95rem;
-  font-weight: 500;
-}
-
-.input-field__input,
-.input-field__textarea,
-.input-field__select {
-  padding: 0.75rem 1rem;
-  background: var(--bg-light);
-  color: var(--text-dark);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  font-size: 0.95rem;
-  transition: border-color var(--transition), box-shadow var(--transition);
-}
-
-.input-field__input:focus,
-.input-field__textarea:focus,
-.input-field__select:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(78, 52, 46, 0.1);
-}
-
-
-/* ================= HERO ICON ================= */
-
-.hero-icons {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  flex-wrap: wrap;
-  margin: var(--spacing-lg) 0 var(--spacing-xl);
-}
-
-.hero-icon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 6px;
-  min-width: 70px;
-}
-
-.hero-icon img {
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
-}
-
-.hero-icon span {
-  font-size: 13px;
-  line-height: 1.2;
-}
-
-
-/* ================= DARK MODE ================= */
-
-:root[data-theme="dark"] .card,
-:root[data-theme="dark"] .product-card,
-:root[data-theme="dark"] .modal-content {
-  background: var(--bg-light);
-}
-
-:root[data-theme="dark"] .badge {
-  background: rgba(255, 255, 255, 0.08);
-}
-
-:root[data-theme="dark"] .input-field__input,
-:root[data-theme="dark"] .input-field__textarea,
-:root[data-theme="dark"] .input-field__select {
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-:root[data-theme="dark"] .hero-icon img {
-  filter: brightness(0) invert(1);
-}
-
-:root[data-theme="dark"] .produk-card {
-  background: #1f1f1f;
-  color: #ffffff;
-}
-
-:root[data-theme="light"] .hero-icon img {
-  filter: none;
-}
-
-
-/* ================= RESPONSIVE MODAL ================= */
-
-@media (min-width: var(--bp-md)) {
-  /* Modal Tablet */
-  .modal-content {
-    width: min(100%, 500px);
-  }
-}
-
-@media (min-width: var(--bp-lg)) {
-  /* Modal Desktop */
-  .modal-content {
-    width: min(100%, 600px);
-  }
-}
+.produk-grid { display: grid; gap: var(--sp-md); grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 640px)  { .produk-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1024px) { .produk-grid { grid-template-columns: repeat(4, 1fr); } }
