@@ -2,206 +2,265 @@
 <html lang="id">
 <head>
   <meta charset="utf-8" />
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('hf-theme');
+        var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+      } catch(e) {}
+    })();
+  </script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Custom Furniture | Husinudin Furniture</title>
-
-  <!-- SEO -->
-  <meta name="description" content="Layanan furniture custom Husinudin Furniture. Sofa, kursi, meja, dan bed set dibuat sesuai ukuran, fungsi, dan desain ruang Anda.">
+  <title>Custom Furniture | Husinudin Furniture — Sesuai Ruang & Kebutuhan Anda</title>
+  <meta name="description" content="Layanan furniture custom Husinudin Furniture. Sofa dan tempat tidur dibuat sesuai ukuran, desain, material, dan finishing pilihan Anda. Konsultasi gratis via WhatsApp.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://husinudinfurniture-debug.github.io/husinudin-furniture/custom.html">
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Custom Furniture | Husinudin Furniture">
   <meta property="og:description" content="Furniture custom sesuai ruang, fungsi, dan desain. Diproduksi langsung oleh tim Husinudin Furniture.">
   <meta property="og:url" content="https://husinudinfurniture-debug.github.io/husinudin-furniture/custom.html">
-  <meta property="og:image" content="assets/images/hero.webp">
+  <meta property="og:image" content="assets/images/hero.png">
 
-  <!-- Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="css/custom-tentang.css">
+
+  <link rel="icon" href="favicon.ico">
 </head>
 
 <body>
 
 <!-- ================= HEADER ================= -->
-<header class="header" role="banner">
-  <div class="container header-inner">
+<header class="header scrolled" role="banner" id="header">
+  <div class="header-inner">
     <a href="index.html" class="logo">Husinudin Furniture</a>
 
-    <!-- Hamburger (Mobile) -->
-    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Ganti mode terang/gelap" title="Ganti tema">
+        <svg class="icon-light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-dark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="nav-drawer">☰</button>
+    </div>
 
-    <nav class="nav" role="navigation" aria-label="Main Navigation">
+    <nav class="nav" role="navigation" aria-label="Navigasi utama">
       <a href="index.html">Beranda</a>
       <a href="produk.html">Produk</a>
       <a href="custom.html" class="active">Custom</a>
       <a href="tentang.html">Tentang</a>
+      <a href="https://wa.me/6282113687057?text=Halo%20Husinudin%20Furniture,%0ASaya%20ingin%20konsultasi%20custom%20furniture." class="nav-cta" target="_blank" rel="noopener">Konsultasi Gratis</a>
     </nav>
   </div>
 </header>
 
-<!-- ================= HERO ================= -->
-<section class="custom-hero">
-  <div class="container">
-    <h1>Furniture Custom yang Tepat untuk Setiap Ruang</h1>
-    <p>
-      Fokus pada kebutuhan Anda: ukuran, fungsi, dan estetika.
-      Bukan sekadar custom, tapi solusi nyata untuk ruang Anda.
-    </p>
+<!-- Mobile Nav Drawer -->
+<nav id="nav-drawer" class="nav-drawer" role="navigation" aria-label="Navigasi mobile">
+  <a href="index.html">Beranda</a>
+  <a href="produk.html">Produk</a>
+  <a href="custom.html" class="active">Custom</a>
+  <a href="tentang.html">Tentang</a>
+  <a href="https://wa.me/6282113687057?text=Halo%20Husinudin%20Furniture,%0ASaya%20ingin%20konsultasi%20custom%20furniture." class="nav-cta-mobile" target="_blank" rel="noopener">💬 Konsultasi Gratis</a>
+</nav>
 
-    <div class="hero-icons">
-      <div class="hero-icon">
-        <img src="assets/icons/size.svg" alt="Ukuran">
-        <span>Ukuran</span>
-      </div>
-      <div class="hero-icon">
-        <img src="assets/icons/design.svg" alt="Desain">
-        <span>Desain</span>
-      </div>
-      <div class="hero-icon">
-        <img src="assets/icons/material.svg" alt="Material">
-        <span>Material</span>
-      </div>
-      <div class="hero-icon">
-        <img src="assets/icons/finishing.svg" alt="Finishing">
-        <span>Finishing</span>
-      </div>
+<!-- ================= PAGE HERO ================= -->
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Layanan Custom</span>
+    <h1>Furniture yang Tepat<br>untuk Setiap Ruang</h1>
+    <p class="lead">Bukan sekadar custom — tapi solusi nyata untuk ruang Anda. Ukuran presisi, desain personal, material pilihan sendiri.</p>
+
+    <div class="page-hero-badges">
+      <span class="badge badge--soft">
+        <img src="assets/icons/size.svg" alt="" style="width:14px;height:14px;display:inline;" aria-hidden="true"> Ukuran
+      </span>
+      <span class="badge badge--soft">
+        <img src="assets/icons/design.svg" alt="" style="width:14px;height:14px;display:inline;" aria-hidden="true"> Desain
+      </span>
+      <span class="badge badge--soft">
+        <img src="assets/icons/material.svg" alt="" style="width:14px;height:14px;display:inline;" aria-hidden="true"> Material
+      </span>
+      <span class="badge badge--soft">
+        <img src="assets/icons/finishing.svg" alt="" style="width:14px;height:14px;display:inline;" aria-hidden="true"> Finishing
+      </span>
     </div>
 
-    <a href="https://wa.me/6282113687057?text=Halo%20Husinudin%20Furniture,%0ASaya%20ingin%20konsultasi%20custom%20furniture."
-       class="btn-primary"
-       target="_blank"
-       rel="noopener">
-      Konsultasi Gratis
+    <a href="https://wa.me/6282113687057?text=Halo%20Husinudin%20Furniture,%0ASaya%20ingin%20konsultasi%20custom%20furniture." class="btn btn-wa" target="_blank" rel="noopener">
+      Konsultasi Gratis — Tanpa Komitmen
     </a>
   </div>
 </section>
 
-<!-- ================= MASALAH & SOLUSI ================= -->
-<section class="section problem-solution">
-  <div class="container grid-2cols">
+<main>
 
-    <div class="col problems">
-      <h2>Masalah Pelanggan</h2>
-      <ul>
-        <li>Ruang terbatas → furniture pasaran tidak cocok</li>
-        <li>Desain umum → tidak sesuai karakter interior</li>
-        <li>Material & finishing sering tidak sesuai fungsi</li>
-        <li>Kualitas sulit dipastikan</li>
-      </ul>
-    </div>
-
-    <div class="col solutions">
-      <h2>Solusi Husinudin Furniture</h2>
-      <ul>
-        <li>Ukuran presisi sesuai ruang</li>
-        <li>Desain personal & fleksibel</li>
-        <li>Material premium sesuai kebutuhan & budget</li>
-        <li>Proses terkontrol dari awal hingga QC</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-<!-- ================= APA YANG BISA DIKUSTOM ================= -->
-<section class="section light">
-  <div class="container">
-    <h2>Apa yang Bisa Dikustom</h2>
-
-    <div class="solution-grid">
-      <div class="solution-item">
-        <h4>Ukuran</h4>
-        <p>Disesuaikan dengan dimensi ruang dan fungsi.</p>
+  <!-- ================= PROBLEM / SOLUTION ================= -->
+  <section class="section section--light" aria-labelledby="ps-title">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">Masalah & Solusi</span>
+        <h2 id="ps-title">Kenapa Custom Lebih Tepat?</h2>
+        <div class="divider"></div>
       </div>
-      <div class="solution-item">
-        <h4>Desain</h4>
-        <p>Minimalis, modern, atau referensi Anda sendiri.</p>
-      </div>
-      <div class="solution-item">
-        <h4>Material</h4>
-        <p>Pilihan bahan terbaik untuk kenyamanan & daya tahan.</p>
-      </div>
-      <div class="solution-item">
-        <h4>Finishing</h4>
-        <p>Warna, tekstur, dan detail akhir sesuai konsep.</p>
+
+      <div class="split-grid reveal">
+        <div class="problem-col">
+          <h3 style="font-size:1.1rem; margin-bottom: var(--sp-sm); color: var(--ink);">Masalah dengan Furniture Pasaran</h3>
+          <div class="split-list">
+            <div class="split-list-item"><span class="icon-x">✗</span> Ukuran tidak cocok untuk ruang terbatas</div>
+            <div class="split-list-item"><span class="icon-x">✗</span> Desain generik, tidak sesuai karakter interior</div>
+            <div class="split-list-item"><span class="icon-x">✗</span> Material dan finishing tidak bisa dipilih sendiri</div>
+            <div class="split-list-item"><span class="icon-x">✗</span> Kualitas sulit dipastikan sebelum membeli</div>
+          </div>
+        </div>
+
+        <div class="solution-col">
+          <h3 style="font-size:1.1rem; margin-bottom: var(--sp-sm);">Solusi Husinudin Furniture</h3>
+          <div class="split-list">
+            <div class="split-list-item"><span class="icon-check">✓</span> Ukuran presisi sesuai dimensi ruang Anda</div>
+            <div class="split-list-item"><span class="icon-check">✓</span> Desain personal atau sesuai referensi Anda</div>
+            <div class="split-list-item"><span class="icon-check">✓</span> Material dan finishing pilihan sendiri</div>
+            <div class="split-list-item"><span class="icon-check">✓</span> Proses terkontrol dari konsultasi hingga QC</div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ================= ALUR PEMESANAN ================= -->
-<section class="section">
-  <div class="container">
-    <h2>Alur Pemesanan</h2>
+  <!-- ================= APA YANG BISA DIKUSTOM ================= -->
+  <section class="section section--cream" aria-labelledby="options-title">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">Fleksibilitas</span>
+        <h2 id="options-title">Apa yang Bisa Dikustom?</h2>
+        <p>Hampir semua aspek furniture bisa disesuaikan dengan kebutuhan Anda.</p>
+        <div class="divider"></div>
+      </div>
 
-    <div class="steps-grid">
-      <div class="step">
-        <span>01</span>
-        <h4>Konsultasi</h4>
-        <p>Diskusi kebutuhan, ukuran, dan referensi via WhatsApp.</p>
-      </div>
-      <div class="step">
-        <span>02</span>
-        <h4>Estimasi</h4>
-        <p>Rencana desain & estimasi harga transparan.</p>
-      </div>
-      <div class="step">
-        <span>03</span>
-        <h4>Produksi</h4>
-        <p>Dikerjakan oleh pengrajin berpengalaman.</p>
-      </div>
-      <div class="step">
-        <span>04</span>
-        <h4>QC & Pengiriman</h4>
-        <p>Quality check lalu dikirim ke lokasi Anda.</p>
+      <div class="custom-options-grid">
+        <div class="custom-option reveal reveal-delay-1">
+          <img src="assets/icons/size.svg" alt="" aria-hidden="true">
+          <h4>Ukuran</h4>
+          <p>Disesuaikan presisi dengan dimensi dan fungsi ruang Anda.</p>
+        </div>
+        <div class="custom-option reveal reveal-delay-2">
+          <img src="assets/icons/desain.svg" alt="" aria-hidden="true">
+          <h4>Desain</h4>
+          <p>Minimalis, modern, japandi, luxury — atau referensi Anda sendiri.</p>
+        </div>
+        <div class="custom-option reveal reveal-delay-3">
+          <img src="assets/icons/material.svg" alt="" aria-hidden="true">
+          <h4>Material</h4>
+          <p>Pilih bahan terbaik sesuai fungsi, kenyamanan, dan budget Anda.</p>
+        </div>
+        <div class="custom-option reveal reveal-delay-3">
+          <img src="assets/icons/finishing.svg" alt="" aria-hidden="true">
+          <h4>Finishing</h4>
+          <p>Warna, tekstur, dan detail akhir sesuai konsep interior Anda.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ================= CTA ================= -->
-<section class="cta">
-  <div class="container">
-    <h2>Mulai Konsultasi Furniture Custom</h2>
-    <p>Hemat waktu, hasil presisi, sesuai kebutuhan ruang Anda.</p>
+  <!-- ================= PROSES ================= -->
+  <section class="section section--light" aria-labelledby="process-title">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">Cara Kerja</span>
+        <h2 id="process-title">Alur Pemesanan Custom</h2>
+        <p>Transparan dan mudah dipahami dari awal hingga akhir.</p>
+        <div class="divider"></div>
+      </div>
 
-    <a href="https://wa.me/6282113687057?text=Halo%20Husinudin%20Furniture,%0ASaya%20ingin%20konsultasi%20custom%20furniture."
-       class="btn-primary"
-       target="_blank"
-       rel="noopener">
-      Konsultasi via WhatsApp
-    </a>
-  </div>
-</section>
+      <div class="steps-grid">
+        <div class="step-card reveal reveal-delay-1">
+          <div class="step-card__num-wrap"><span class="step-card__num">01</span></div>
+          <h4>Konsultasi</h4>
+          <p>Ceritakan kebutuhan, ukuran ruang, dan referensi via WhatsApp. Kami bantu tanpa biaya.</p>
+        </div>
+        <div class="step-card reveal reveal-delay-2">
+          <div class="step-card__num-wrap"><span class="step-card__num">02</span></div>
+          <h4>Estimasi & Konsep</h4>
+          <p>Rencana desain dan estimasi harga transparan. Tidak ada biaya tersembunyi.</p>
+        </div>
+        <div class="step-card reveal reveal-delay-3">
+          <div class="step-card__num-wrap"><span class="step-card__num">03</span></div>
+          <h4>Produksi</h4>
+          <p>Dikerjakan oleh pengrajin berpengalaman di workshop sendiri. Update progress diberikan.</p>
+        </div>
+        <div class="step-card reveal reveal-delay-3">
+          <div class="step-card__num-wrap"><span class="step-card__num">04</span></div>
+          <h4>QC & Pengiriman</h4>
+          <p>Quality check ketat sebelum dikirim ke lokasi Anda. Estimasi 7–14 hari kerja.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- ================= FOOTER (DIKUNCI) ================= -->
+  <!-- ================= CTA ================= -->
+  <section class="section section--cream" aria-labelledby="cta-custom">
+    <div class="container">
+      <div class="cta-section reveal">
+        <div>
+          <span class="eyebrow">Mulai Sekarang</span>
+          <h2 id="cta-custom">Solusi Presisi untuk Ruang Anda</h2>
+          <p>Konsultasi singkat dan ringkas—kami memberikan saran desain, pilihan material, dan estimasi biaya.</p>
+          <a href="https://wa.me/6282113687057?text=Halo%20Husinudin%20Furniture,%0ASaya%20ingin%20konsultasi%20custom%20furniture." class="btn btn-wa btn--lg" target="_blank" rel="noopener">
+            Konsultasi via WhatsApp
+          </a>
+          <span class="cta-note">Cepat, jelas, dan tanpa biaya awal</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
 <footer class="footer" role="contentinfo">
-  <div class="container footer-inner">
-
-    <div class="footer-brand">
-      <strong>Husinudin Furniture</strong>
-      <p>Furniture custom sesuai ruang & kebutuhan</p>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo-footer">Husinudin Furniture</a>
+        <p>Spesialis sofa dan tempat tidur custom untuk rumah kelas menengah hingga premium.</p>
+        <div class="footer-social" aria-label="Media sosial">
+          <a href="https://instagram.com/husinudinfurniture" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="https://tiktok.com/@husinudinfurniture" target="_blank" rel="noopener" aria-label="TikTok">TT</a>
+          <a href="https://www.facebook.com/profile.php?id=61591616660572" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+          <a href="https://wa.me/6282113687057" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Navigasi</h4>
+        <a href="index.html">Beranda</a>
+        <a href="produk.html">Produk</a>
+        <a href="custom.html">Custom Furniture</a>
+        <a href="tentang.html">Tentang Kami</a>
+      </div>
+      <div class="footer-links">
+        <h4>Hubungi Kami</h4>
+        <a href="https://wa.me/6282113687057" target="_blank" rel="noopener">WhatsApp: 0821-1368-7057</a>
+        <a href="mailto:husinudinfurniture@gmail.com">husinudinfurniture@gmail.com</a>
+      </div>
     </div>
-
-    <div class="footer-contact">
-      <a href="mailto:husinudinfurniture@gmail.com">Email</a>
-      <a href="https://instagram.com/husinudinfurniture" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://tiktok.com/@husinudinfurniture" target="_blank" rel="noopener">TikTok</a>
-      <a href="https://wa.me/6282113687057" target="_blank" rel="noopener">WhatsApp</a>
-      <a href="https://www.facebook.com/profile.php?id=61591616660572" target="_blank" rel="noopener">Facebook</a>
+    <div class="footer-bottom">
+      <span>© 2026 Husinudin Furniture. All rights reserved.</span>
+      <span>Workshop: Tasikmalaya · Jakarta · Bali</span>
     </div>
-
-    <div class="footer-copy">
-      <p>© 2026 Husinudin Furniture</p>
-    </div>
-
   </div>
 </footer>
+
+<!-- ================= FLOATING WA ================= -->
+<a href="https://wa.me/6282113687057?text=Halo%20Husinudin%20Furniture,%0ASaya%20ingin%20konsultasi%20custom%20furniture." class="wa-float" target="_blank" rel="noopener" aria-label="Konsultasi via WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.115 1.522 5.84L.057 23.882a.5.5 0 00.613.613l6.042-1.465A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.896 0-3.67-.52-5.193-1.426l-.372-.22-3.856.935.952-3.754-.242-.386A9.952 9.952 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+  <span>Konsultasi Gratis</span>
+</a>
 
 <!-- ================= SCRIPTS ================= -->
 <script src="js/main.js" defer></script>
