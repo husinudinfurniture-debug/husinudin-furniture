@@ -117,6 +117,10 @@
 .section--dark .feature-card__icon,
 .section--dark .why-icon { background: var(--dark-section-bg); border: 1px solid var(--dark-card-border); }
 .feature-card__icon img { width: 22px; height: 22px; object-fit: contain; }
+.section--dark .feature-card__icon img,
+:root[data-theme="dark"] .feature-card__icon img {
+  filter: invert(1) brightness(1.1);
+}
 .feature-card h4, .why-card h4 { font-size: 0.92rem; font-weight: 700; margin-bottom: var(--sp-xs); color: var(--text); }
 .feature-card p, .why-card p { font-size: 0.86rem; color: var(--text-muted); line-height: 1.6; }
 .why-card { display: flex; align-items: flex-start; gap: var(--sp-md); }
