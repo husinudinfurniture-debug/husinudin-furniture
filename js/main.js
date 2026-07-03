@@ -1,317 +1,265 @@
-/* =========================================================
-   MAIN.JS - FINAL UPGRADED VERSION
-   Stable • Conversion Oriented • Harga Mulai Dari
-   
-   Execution Flow:
-   1. Header & Navigation (active state, theme, menu toggle, scroll)
-   2. Product Page Features (filtering, search, rendering)
-   3. Modal Interactions (open, close, keyboard, click-outside)
-   4. Initialization (on page load)
-   ========================================================= */
+/* =========================  MAIN.JS  ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-  /* ================= HEADER & NAVIGATION INITIALIZATION ================= */
-  // Sets 'active' class on current page navigation link
-  const path = window.location.pathname;
 
-  document.querySelectorAll(".nav a").forEach((link) => {
+  /* ================= THEME TOGGLE ================= */
+  const themeToggle = document.getElementById("themeToggle");
+  const root = document.documentElement;
+
+  function applyTheme(theme) {
+    if (theme === "dark") {
+      root.setAttribute("data-theme", "dark");
+    } else {
+      root.removeAttribute("data-theme");
+    }
+    try { localStorage.setItem("hf-theme", theme); } catch (e) {}
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const isDark = root.getAttribute("data-theme") === "dark";
+      applyTheme(isDark ? "light" : "dark");
+    });
+  }
+
+  /* ================= HEADER SCROLL ================= */
+  /* FIXED v3: no more inline style injection. CSS classes (.transparent / .scrolled)
+     now carry ALL the color rules themselves (see layout.css), so toggling the
+     class is the only thing JS needs to do — no flash, no inconsistency. */
+  const header = document.getElementById("header");
+
+  if (header) {
+    const isTransparentVariant = header.classList.contains("transparent") || header.dataset.transparent === "true";
+
+    const handleScroll = () => {
+      if (isTransparentVariant) {
+        const scrolled = window.scrollY > 60;
+        header.classList.toggle("scrolled", scrolled);
+        header.classList.toggle("transparent", !scrolled);
+      } else {
+        header.classList.toggle("scrolled", window.scrollY > 10);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+  }
+
+  /* ================= ACTIVE NAV LINK ================= */
+  const path = window.location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll(".nav a, .nav-drawer a").forEach(link => {
     const href = link.getAttribute("href");
-    const currentPage = path.split("/").pop();
-
-    if (href === currentPage) {
+    if (href === path) {
       link.classList.add("active");
     }
   });
 
-  /* ================= THEME INITIALIZATION ================= */
-  // Applies saved theme preference or system preference to document
-  (() => {
-    const storedTheme = localStorage.getItem("theme");
-
-    if (storedTheme) {
-      document.documentElement.setAttribute("data-theme", storedTheme);
-    } else if (
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
-      document.documentElement.setAttribute("data-theme", "dark");
-    }
-  })();
-
-  /* ================= MOBILE NAVIGATION TOGGLE ================= */
-  // Controls open/close of mobile menu with aria-expanded attribute
+  /* ================= MOBILE NAV TOGGLE ================= */
   const navToggle = document.querySelector(".nav-toggle");
-  const nav = document.querySelector(".nav");
+  const navDrawer = document.getElementById("nav-drawer");
 
-  if (navToggle && nav) {
+  if (navToggle && navDrawer) {
     navToggle.addEventListener("click", () => {
-      const isOpen =
-        navToggle.getAttribute("aria-expanded") === "true";
-
+      const isOpen = navToggle.getAttribute("aria-expanded") === "true";
       navToggle.setAttribute("aria-expanded", !isOpen);
-      nav.classList.toggle("active");
+      navDrawer.classList.toggle("active");
+      navToggle.textContent = isOpen ? "☰" : "✕";
+    });
+
+    // Close drawer when a link inside is clicked
+    navDrawer.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navDrawer.classList.remove("active");
+        navToggle.setAttribute("aria-expanded", "false");
+        navToggle.textContent = "☰";
+      });
+    });
+
+    // Close on outside click
+    document.addEventListener("click", e => {
+      if (!navDrawer.contains(e.target) && !navToggle.contains(e.target)) {
+        navDrawer.classList.remove("active");
+        navToggle.setAttribute("aria-expanded", "false");
+        navToggle.textContent = "☰";
+      }
     });
   }
 
-  /* ================= HEADER SCROLL STATE ================= */
-  // Adds 'scrolled' class to header when page scrolls beyond 10px
-  const header = document.querySelector(".header");
+  /* ================= SCROLL REVEAL ================= */
+  const reveals = document.querySelectorAll(".reveal");
 
-  if (header) {
-    window.addEventListener("scroll", () => {
-      header.classList.toggle("scrolled", window.scrollY > 10);
-    });
+  if (reveals.length > 0 && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => observer.observe(el));
+  } else {
+    // Fallback: show all immediately
+    reveals.forEach(el => el.classList.add("in-view"));
   }
 
-  /* ================= DOM ELEMENTS - PRODUCT FEATURES ================= */
-  const container = document.getElementById("produk-list");
-  const searchInput = document.getElementById("searchInput");
-  const kategoriBtns = document.querySelectorAll(".kategori button");
+  /* ================= PRODUCT PAGE ================= */
+  const produkList   = document.getElementById("produk-list");
+  const searchInput  = document.getElementById("searchInput");
+  const filterBtns   = document.querySelectorAll(".filter-btn");
+  const productCount = document.getElementById("productCount");
 
-  /* ================= DOM ELEMENTS - MODAL ================= */
-  const modal = document.getElementById("modal");
-  const modalImg = document.getElementById("modalImg");
-  const modalNama = document.getElementById("modalNama");
-  const modalKategori = document.getElementById("modalKategori");
-  const modalHarga = document.getElementById("modalHarga");
-  const modalDesc = document.getElementById("modalDesc");
-  const modalWa = document.getElementById("modalWa");
-  const closeBtn = document.querySelector(".close");
+  if (!produkList || typeof produkData === "undefined") return;
 
-  /* ================= STATE ================= */
-  let kategoriAktif = "semua";
+  let activeKategori = "semua";
 
-  /* ================= HELPER FUNCTIONS ================= */
-  
-  /**
-   * Formats number as Indonesian Rupiah currency
-   * @param {number} number - Amount to format
-   * @returns {string} Formatted currency string
-   */
-  function formatRupiah(number) {
-    return `Rp ${Number(number).toLocaleString("id-ID")}`;
+  /* --- Format Rupiah --- */
+  function formatRupiah(n) {
+    return "Rp " + Number(n).toLocaleString("id-ID");
   }
 
-  /**
-   * Creates WhatsApp message with product consultation request
-   * @param {Object} product - Product data object
-   * @returns {string} URL-encoded message
-   */
-function createWaMessage(product) {
-  /* ID 15 = custom sofa */
-  if (product.id === 15) {
+  /* --- WhatsApp Message --- */
+  function waMsg(product) {
+    if (product.id === 15) {
+      return encodeURIComponent(
+        "Halo, saya ingin konsultasi custom sofa sesuai referensi desain sendiri. Saya akan kirimkan gambar referensinya."
+      );
+    }
+    if (product.id === 23) {
+      return encodeURIComponent(
+        "Halo, saya ingin konsultasi custom tempat tidur sesuai referensi desain sendiri. Saya akan kirimkan gambar referensinya."
+      );
+    }
     return encodeURIComponent(
-      `Halo, saya memiliki referensi desain sofa sendiri dan ingin konsultasi custom sofa sesuai kebutuhan. Saya akan mengirimkan gambar referensinya.`
+      `Halo, saya tertarik dengan model ${product.nama}.\nSaya ingin konsultasi ukuran, warna, bahan, dan estimasi pengerjaan.`
     );
   }
 
-  /* ID 23 = custom tempat tidur */
-  if (product.id === 23) {
-    return encodeURIComponent(
-      `Halo, saya memiliki referensi desain tempat tidur sendiri dan ingin konsultasi custom sesuai kebutuhan. Saya akan mengirimkan gambar referensinya.`
-    );
-  }
-
-  /* default produk lainnya */
-  return encodeURIComponent(
-    `Halo, saya tertarik dengan model ${product.nama}.
-Saya ingin konsultasi ukuran, warna, bahan, dan estimasi pengerjaan.`
-  );
-  }
-
-  /* ================= PRODUCT CARD CREATION ================= */
-  
-  /**
-   * Creates product card DOM element with event listener
-   * @param {Object} product - Product data from produkData array
-   * @returns {HTMLElement} Card element with click handler
-   */
-  function createProductCard(product) {
+  /* --- Create Card --- */
+  function createCard(product) {
     const card = document.createElement("div");
     card.className = "produk-card";
+    card.setAttribute("role", "button");
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("aria-label", `Lihat detail ${product.nama}`);
+
+    const isCustom = product.id === 15 || product.id === 23;
 
     card.innerHTML = `
-      <img src="${product.img}" alt="${product.nama}" loading="lazy">
-
-      <h4>${product.nama}</h4>
-
-      <div class="harga">
-        Harga mulai dari ${formatRupiah(product.harga_mulai)}
+      <div class="produk-card__img-wrap">
+        <img src="${product.img}" alt="${product.nama}" loading="lazy">
+        <span class="produk-card__badge">${product.kategori === "tidur" ? "Tempat Tidur" : "Sofa"}</span>
       </div>
-
-      <p>
-        ✔ Custom ukuran <br>
-        ✔ Custom warna <br>
-        ✔ Workshop sendiri
-      </p>
+      <div class="produk-card__body">
+        <h4>${product.nama}</h4>
+        <div class="harga">Mulai ${formatRupiah(product.harga_mulai)}</div>
+        <div class="konsultasi-tag">${isCustom ? "✓ Kirim referensi desain Anda" : "✓ Custom ukuran, warna & bahan"}</div>
+      </div>
     `;
 
-    card.addEventListener("click", () => bukaModal(product));
+    const open = () => openModal(product);
+    card.addEventListener("click", open);
+    card.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
 
     return card;
   }
 
-  /* ================= PRODUCT FILTERING ================= */
-  
-  /**
-   * Filters products by search keyword and category
-   * @returns {Array} Filtered products matching current criteria
-   */
-  function getFilteredProducts() {
+  /* --- Filter --- */
+  function getFiltered() {
     const keyword = searchInput?.value.toLowerCase().trim() || "";
-
-    return produkData.filter((product) => {
-      const cocokNama = product.nama
-        .toLowerCase()
-        .includes(keyword);
-
-      const cocokKategori =
-        kategoriAktif === "semua" ||
-        product.kategori.toLowerCase() === kategoriAktif;
-
-      return cocokNama && cocokKategori;
+    return produkData.filter(p => {
+      const matchName = p.nama.toLowerCase().includes(keyword);
+      const matchKat  = activeKategori === "semua" || p.kategori.toLowerCase() === activeKategori;
+      return matchName && matchKat;
     });
   }
 
-  /**
-   * Renders empty state message when no products match filter
-   */
-  function renderEmptyState() {
-    container.innerHTML = `
-      <div class="empty-state">
-        Produk tidak ditemukan.
-      </div>
-    `;
-  }
+  /* --- Render Products --- */
+  function renderProducts() {
+    produkList.innerHTML = "";
+    const hasil = getFiltered();
 
-  /**
-   * Renders filtered products to container using DocumentFragment
-   */
-  function renderProduk() {
-    if (!container) return;
+    // Urutkan hasil berdasarkan harga_mulai: termurah -> termahal
+    hasil.sort((a, b) => (a.harga_mulai || 0) - (b.harga_mulai || 0));
 
-    container.innerHTML = "";
-
-    const hasil = getFilteredProducts();
+    if (productCount) {
+      productCount.textContent = `Menampilkan ${hasil.length} produk`;
+    }
 
     if (!hasil.length) {
-      renderEmptyState();
+      produkList.innerHTML = `
+        <div class="empty-state">
+          <p>Produk tidak ditemukan.</p>
+          <p>Coba kata kunci lain atau pilih kategori berbeda.</p>
+        </div>
+      `;
       return;
     }
 
     const fragment = document.createDocumentFragment();
-
-    hasil.forEach((product) => {
-      fragment.appendChild(createProductCard(product));
-    });
-
-    container.appendChild(fragment);
+    hasil.forEach(p => fragment.appendChild(createCard(p)));
+    produkList.appendChild(fragment);
   }
 
+  /* --- Filter Buttons --- */
+  filterBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeKategori = btn.dataset.kategori.toLowerCase();
+      renderProducts();
+    });
+  });
 
+  /* --- Search --- */
+  if (searchInput) {
+    searchInput.addEventListener("input", renderProducts);
+  }
 
-  /* ================= MODAL OPENING ================= */
-  
-  /**
-   * Opens product detail modal with product information
-   * @param {Object} product - Product data to display
-   */
-  function bukaModal(product) {
+  /* ================= MODAL ================= */
+  const modal     = document.getElementById("modal");
+  const modalImg  = document.getElementById("modalImg");
+  const modalNama = document.getElementById("modalNama");
+  const modalKat  = document.getElementById("modalKategori");
+  const modalHarga= document.getElementById("modalHarga");
+  const modalDesc = document.getElementById("modalDesc");
+  const modalWa   = document.getElementById("modalWa");
+  const closeBtn  = document.querySelector(".modal-close");
+
+  function openModal(product) {
     if (!modal) return;
-
-    modalImg.src = product.img;
-    modalImg.alt = product.nama;
-
+    modalImg.src  = product.img;
+    modalImg.alt  = product.nama;
     modalNama.textContent = product.nama;
-    modalKategori.textContent = product.kategori;
-
-    modalHarga.textContent =
-      `Harga mulai dari ${formatRupiah(product.harga_mulai)}`;
-
+    modalKat.textContent  = product.kategori === "tidur" ? "Tempat Tidur" : "Sofa";
+    modalHarga.textContent= `Mulai ${formatRupiah(product.harga_mulai)}`;
     modalDesc.textContent = product.deskripsi;
-
-    modalWa.href =
-      `https://wa.me/6282113687057?text=${createWaMessage(
-        product
-      )}`;
-
+    modalWa.href = `https://wa.me/6282113687057?text=${waMsg(product)}`;
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
-
     document.body.classList.add("modal-open");
+    closeBtn?.focus();
   }
 
-  /* ================= MODAL CLOSING ================= */
-  
-  /**
-   * Closes product detail modal
-   */
-  function tutupModal() {
+  function closeModal() {
     if (!modal) return;
-
     modal.classList.remove("is-open");
     modal.setAttribute("aria-hidden", "true");
-
     document.body.classList.remove("modal-open");
   }
 
-  /* ================= EVENT LISTENERS ================= */
-  
-  /* ----- PRODUCT FILTER CONTROLS ----- */
-  // Category button filter handler
-  kategoriBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      kategoriBtns.forEach((b) =>
-        b.classList.remove("active")
-      );
+  if (closeBtn) closeBtn.addEventListener("click", closeModal);
 
-      btn.classList.add("active");
-      kategoriAktif = btn.dataset.kategori.toLowerCase();
-
-      renderProduk();
-
-      container?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    });
+  modal?.addEventListener("click", e => {
+    if (e.target === modal) closeModal();
   });
 
-  // Search input filter handler
-  if (searchInput) {
-    searchInput.addEventListener("input", renderProduk);
-  }
-
-  /* ----- MODAL INTERACTIONS ----- */
-  // Close button click handler
-  if (closeBtn) {
-    closeBtn.addEventListener("click", tutupModal);
-  }
-
-  // Click outside modal to close
-  document.addEventListener("click", (e) => {
-    if (
-      modal &&
-      modal.classList.contains("is-open") &&
-      e.target === modal
-    ) {
-      tutupModal();
-    }
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && modal?.classList.contains("is-open")) closeModal();
   });
 
-  // Escape key to close modal
-  document.addEventListener("keydown", (e) => {
-    if (
-      e.key === "Escape" &&
-      modal &&
-      modal.classList.contains("is-open")
-    ) {
-      tutupModal();
-    }
-  });
+  /* --- Initial Render --- */
+  renderProducts();
 
-  /* ================= INITIALIZATION ================= */
-  // Render initial product list on page load
-  if (container && typeof produkData !== "undefined") {
-    renderProduk();
-  }
 });
